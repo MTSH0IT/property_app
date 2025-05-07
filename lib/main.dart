@@ -13,6 +13,7 @@ class PropertyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
+      //locale: Locale('ar'),
       onGenerateRoute: onGenerateRoutes,
       initialRoute: SplashView.routeName,
     );
