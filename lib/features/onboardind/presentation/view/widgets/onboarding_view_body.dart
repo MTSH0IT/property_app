@@ -84,14 +84,17 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
           maintainAnimation: true,
           maintainState: true,
           visible: currentIndex == 2,
-          child: CustomButton(
-            text: 'ابدأ الآن',
-            ontap: () {
-              Navigator.pushReplacementNamed(context, LoginView.routeName);
-            },
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: CustomButton(
+              text: 'ابدأ الآن',
+              ontap: () {
+                Navigator.pushReplacementNamed(context, LoginView.routeName);
+              },
+            ),
           ),
         ),
-        const SizedBox(height: 25),
+        const SizedBox(height: 20),
       ],
     );
   }

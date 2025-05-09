@@ -7,6 +7,15 @@ class SignupView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: SignupViewBody());
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('تسجيل حساب جديد'),
+        leading: SizedBox(),
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
+      body: SafeArea(child: SignupViewBody()),
+    );
   }
 }
