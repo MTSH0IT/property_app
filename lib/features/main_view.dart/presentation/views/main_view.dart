@@ -20,6 +20,7 @@ class _MainViewState extends State<MainView> {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: kcolor,
+        type: BottomNavigationBarType.fixed,
         selectedItemColor: Colors.blueAccent,
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
@@ -29,7 +30,7 @@ class _MainViewState extends State<MainView> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.manage_accounts_outlined),
-            label: 'Staings',
+            label: 'Settings',
           ),
         ],
         currentIndex: currentIndex,
