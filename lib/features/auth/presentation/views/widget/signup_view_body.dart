@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:property_app/core/helper_functions/build_snack_bar_message.dart';
@@ -40,7 +41,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
             children: [
               SizedBox(height: 24),
               CustomTextFormField(
-                hintText: "اسم المستخدم",
+                hintText: "auth.username".tr(),
                 textInputType: TextInputType.text,
                 onSaved: (value) {
                   name = value!;
@@ -48,7 +49,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
               ),
               SizedBox(height: 16),
               CustomTextFormField(
-                hintText: "البريد الالكتروني",
+                hintText: "auth.email".tr(),
                 textInputType: TextInputType.emailAddress,
                 onSaved: (value) {
                   email = value!;
@@ -56,7 +57,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
               ),
               SizedBox(height: 16),
               CustomTextFormField(
-                hintText: "رقم الجوال",
+                hintText: "auth.phone".tr(),
                 textInputType: TextInputType.phone,
                 onSaved: (value) {
                   phone = int.parse(value!);
@@ -64,7 +65,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
               ),
               SizedBox(height: 16),
               CustomTextFormField(
-                hintText: "كلمة المرور",
+                hintText: "auth.password".tr(),
                 textInputType: TextInputType.visiblePassword,
                 obscureText: true,
                 onSaved: (value) {
@@ -73,7 +74,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
               ),
               SizedBox(height: 16),
               CustomTextFormField(
-                hintText: "تأكيد كلمة المرور",
+                hintText: "auth.confirm_password".tr(),
                 textInputType: TextInputType.visiblePassword,
                 obscureText: true,
                 onSaved: (value) {
@@ -83,7 +84,10 @@ class _SignupViewBodyState extends State<SignupViewBody> {
               SizedBox(height: 24),
               Row(
                 children: [
-                  Text('هل لديك حساب؟', style: TextStyle(color: Colors.black)),
+                  Text(
+                    "auth.have_account".tr(),
+                    style: TextStyle(color: Colors.black),
+                  ),
                   SizedBox(width: 8),
                   GestureDetector(
                     onTap: () {
@@ -91,7 +95,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                     },
 
                     child: Text(
-                      'سجل الآن',
+                      "auth.login".tr(),
                       style: TextStyle(color: Colors.blueAccent),
                     ),
                   ),
@@ -99,7 +103,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
               ),
               const SizedBox(height: 50),
               CustomButton(
-                text: "تسجيل",
+                text: "auth.sign_up".tr(),
                 ontap: () {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
@@ -122,7 +126,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                       );
                     }
                   } else {
-                    _autoValidateMode = AutovalidateMode.onUserInteraction;
+                    _autoValidateMode = AutovalidateMode.always;
                     buildSnackBarMessage(
                       context,
                       "Please fill all fields",

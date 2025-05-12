@@ -4,7 +4,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:property_app/core/utils/custom_exception.dart';
 
 class FirebaseAuthServices {
-
   Future<void> deleteUser() async {
     await FirebaseAuth.instance.currentUser!.delete();
   }
@@ -13,14 +12,13 @@ class FirebaseAuthServices {
     return FirebaseAuth.instance.currentUser != null;
   }
 
-  Future<User> createUserWithEmailAndPassword(
-      {required String email, required String password}) async {
+  Future<User> createUserWithEmailAndPassword({
+    required String email,
+    required String password,
+  }) async {
     try {
-      final credential =
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
+      final credential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(email: email, password: password);
       return credential.user!;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -34,51 +32,67 @@ class FirebaseAuthServices {
       } else if (e.code == 'invalid-email') {
         throw CustomException(message: "البريد الالكتروني غير صالح");
       } else {
-        log("Exception : FirebaseAuthServices.createUserWithEmailAndPassword ====> error code: ${e.code}");
+        log(
+          "Exception : FirebaseAuthServices.createUserWithEmailAndPassword ====> error code: ${e.code}",
+        );
         throw CustomException(message: "حدث خطأ يرجا المحاولة لاحقا");
       }
     } catch (e) {
-      log("Exception : FirebaseAuthServices.createUserWithEmailAndPassword ====> error: ${e.toString()}");
+      log(
+        "Exception : FirebaseAuthServices.createUserWithEmailAndPassword ====> error: ${e.toString()}",
+      );
       throw CustomException(message: "حدث خطأ يرجا المحاولة لاحقا");
     }
   }
 
-  Future<User> signinUserWithEmailAndPassword(
-      {required String email, required String password}) async {
+  Future<User> signinUserWithEmailAndPassword({
+    required String email,
+    required String password,
+  }) async {
     try {
-      final credential = await FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: email, password: password);
+      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
       return credential.user!;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         throw CustomException(
-            message: 'الرقم السري او البريد الالكتروني غير صحيح.');
+          message: 'الرقم السري او البريد الالكتروني غير صحيح.',
+        );
       } else if (e.code == 'wrong-password') {
         throw CustomException(
-            message: 'الرقم السري او البريد الالكتروني غير صحيح.');
+          message: 'الرقم السري او البريد الالكتروني غير صحيح.',
+        );
       } else if (e.code == 'invalid-credential') {
         throw CustomException(
-            message: 'الرقم السري او البريد الالكتروني غير صحيح.');
+          message: 'الرقم السري او البريد الالكتروني غير صحيح.',
+        );
       } else if (e.code == 'invalid-email') {
         throw CustomException(
-            message: 'الرقم السري او البريد الالكتروني غير صحيح.');
+          message: 'الرقم السري او البريد الالكتروني غير صحيح.',
+        );
       } else if (e.code == 'user-disabled') {
         throw CustomException(message: 'الحساب المستخدم غير مفعل.');
       } else if (e.code == 'network-request-failed') {
         throw CustomException(message: 'تاكد من اتصالك بالانترنت.');
       } else {
-        log("Exception in FirebaseAuthService.signInWithEmailAndPassword: ${e.toString()} and code is ${e.code}");
+        log(
+          "Exception in FirebaseAuthService.signInWithEmailAndPassword: ${e.toString()} and code is ${e.code}",
+        );
 
         throw CustomException(
-            message: 'لقد حدث خطأ ما. الرجاء المحاولة مرة اخرى.');
+          message: 'لقد حدث خطأ ما. الرجاء المحاولة مرة اخرى.',
+        );
       }
     } catch (e) {
-      log("Exception in FirebaseAuthService.signInWithEmailAndPassword: ${e.toString()}");
+      log(
+        "Exception in FirebaseAuthService.signInWithEmailAndPassword: ${e.toString()}",
+      );
 
       throw CustomException(
-          message: 'لقد حدث خطأ ما. الرجاء المحاولة مرة اخرى.');
+        message: 'لقد حدث خطأ ما. الرجاء المحاولة مرة اخرى.',
+      );
     }
   }
-
- 
 }

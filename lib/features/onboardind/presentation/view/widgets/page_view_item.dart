@@ -19,9 +19,23 @@ class PageViewItem extends StatelessWidget {
       children: [
         SvgPicture.asset(imagePath),
         const SizedBox(height: 20),
-        Text(title, textAlign: TextAlign.center),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Text(
+            title,
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            textAlign: TextAlign.center,
+          ),
+        ),
         const SizedBox(height: 5),
-        Text(subTitle, textAlign: TextAlign.center),
+        Padding(
+          padding: const EdgeInsets.all(8),
+          child: Text(
+            subTitle,
+            style: TextStyle(fontSize: 14),
+            textAlign: TextAlign.center,
+          ),
+        ),
         const SizedBox(height: 10),
       ],
     );

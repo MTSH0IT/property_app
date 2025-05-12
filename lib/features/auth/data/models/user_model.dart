@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:property_app/features/auth/domen/entites/user_entity.dart';
 
 class UserModel {
@@ -34,11 +32,5 @@ class UserModel {
       email: json['email'],
       phone: json['phone'],
     );
-  }
-  toPrintmodel() {
-    log("UserModel : $name");
-    log("UserModel : $email");
-    log("UserModel : $phone");
-    log("UserModel : $uId");
   }
 }

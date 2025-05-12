@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:property_app/core/helper_functions/build_snack_bar_message.dart';
@@ -26,7 +27,7 @@ class LoginView extends StatelessWidget {
           ),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('تسجيل الدخول'),
+          title: Text('auth.login'.tr()),
           centerTitle: true,
           backgroundColor: Colors.transparent,
           elevation: 0,
@@ -34,7 +35,11 @@ class LoginView extends StatelessWidget {
         body: BlocConsumer<LoginCubit, LoginState>(
           listener: (context, state) {
             if (state is LoginSuccess) {
-              buildSnackBarMessage(context, 'Login successful', Colors.green);
+              buildSnackBarMessage(
+                context,
+                'auth.login_success'.tr(),
+                Colors.green,
+              );
               Navigator.pushNamed(context, MainView.routeName);
             }
             if (state is LoginFailure) {

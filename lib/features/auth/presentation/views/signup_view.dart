@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:property_app/core/helper_functions/build_snack_bar_message.dart';
@@ -25,7 +26,7 @@ class SignupView extends StatelessWidget {
           ),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('تسجيل حساب جديد'),
+          title: Text("auth.sign_up".tr()),
           leading: SizedBox(),
           centerTitle: true,
           backgroundColor: Colors.transparent,
@@ -34,7 +35,11 @@ class SignupView extends StatelessWidget {
         body: BlocConsumer<SignupCubit, SignupState>(
           listener: (context, state) {
             if (state is SignupSuccess) {
-              buildSnackBarMessage(context, 'Signup successful', Colors.green);
+              buildSnackBarMessage(
+                context,
+                "auth.sign_up_success".tr(),
+                Colors.green,
+              );
               Navigator.pop(context);
             }
             if (state is SignupFailure) {

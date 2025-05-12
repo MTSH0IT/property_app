@@ -5,6 +5,7 @@ import 'package:property_app/core/helper_functions/save_user_data.dart';
 import 'package:property_app/core/server/database_service.dart';
 import 'package:property_app/core/server/firebase_auth_services.dart';
 import 'package:property_app/core/utils/custom_exception.dart';
+import 'package:property_app/core/utils/end_poent.dart';
 import 'package:property_app/features/auth/data/models/user_model.dart';
 import 'package:property_app/features/auth/domen/entites/user_entity.dart';
 import 'package:property_app/features/auth/domen/repos/auth_repo.dart';
@@ -39,6 +40,9 @@ class AuthRepoImplementation extends AuthRepo {
       if (user != null) {
         await firebaseAuthServices.deleteUser();
       }
+      log(
+        "Exception : AuthRepoImplementation.createUserWithEmailAndPassword ====> error :${e.toString()} ",
+      );
       throw CustomException(message: e.message);
     } catch (e) {
       if (user != null) {
@@ -64,13 +68,13 @@ class AuthRepoImplementation extends AuthRepo {
       var usermodel = await getUserData(uId: user.uid);
       saveUserData(user: usermodel);
 
-      usermodel.toPrintmodel();
+      log("${usermodel.toJson()}");
       return usermodel;
     } on CustomException catch (e) {
       log(
         "Exception : AuthRepoImplementation.signinUserWithEmailAndPassword ====> error :${e.toString()} ",
       );
-      throw CustomException(message: "please try again");
+      throw CustomException(message: e.message);
     } catch (e) {
       log(
         "Exception : AuthRepoImplementation.signinUserWithEmailAndPassword ====> error :${e.toString()} ",
@@ -82,7 +86,7 @@ class AuthRepoImplementation extends AuthRepo {
   @override
   Future addUserData({required UserModel user}) async {
     await firestoreServices.addData(
-      path: "users",
+      path: kusers,
       data: user.toJson(),
       documentId: user.uId,
     );
@@ -90,7 +94,7 @@ class AuthRepoImplementation extends AuthRepo {
 
   @override
   Future<UserModel> getUserData({required String uId}) async {
-    var user = await firestoreServices.getData(path: "users", documentId: uId);
+    var user = await firestoreServices.getData(path: kusers, documentId: uId);
     return UserModel.fromJson(user);
   }
 }

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:property_app/core/widgets/custom_button.dart';
@@ -14,9 +15,10 @@ class LoginViewBody extends StatefulWidget {
 
 class _LoginViewBodyState extends State<LoginViewBody> {
   final _formKey = GlobalKey<FormState>();
-  final AutovalidateMode _autoValidateMode = AutovalidateMode.disabled;
+  AutovalidateMode _autoValidateMode = AutovalidateMode.disabled;
   late String email;
   late String password;
+  bool _scratPassword = false;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -28,7 +30,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
           children: [
             SizedBox(height: 24),
             CustomTextFormField(
-              hintText: "البريد الالكتروني",
+              hintText: "auth.email".tr(),
               textInputType: TextInputType.emailAddress,
               onSaved: (value) {
                 email = value!;
@@ -36,18 +38,32 @@ class _LoginViewBodyState extends State<LoginViewBody> {
             ),
             SizedBox(height: 16),
             CustomTextFormField(
-              hintText: "كلمة المرور",
+              hintText: "auth.password".tr(),
               textInputType: TextInputType.visiblePassword,
-              obscureText: true,
+              obscureText: _scratPassword,
               onSaved: (value) {
                 password = value!;
               },
+              suffixIcon: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    _scratPassword = !_scratPassword;
+                  });
+                },
+                child:
+                    _scratPassword == false
+                        ? Icon(Icons.visibility_off)
+                        : Icon(Icons.visibility),
+              ),
             ),
 
             SizedBox(height: 24),
             Row(
               children: [
-                Text('ليس لديك حساب؟', style: TextStyle(color: Colors.black)),
+                Text(
+                  "auth.no_account".tr(),
+                  style: TextStyle(color: Colors.black),
+                ),
                 SizedBox(width: 8),
                 GestureDetector(
                   onTap: () {},
@@ -56,7 +72,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                       Navigator.pushNamed(context, SignupView.routeName);
                     },
                     child: Text(
-                      'انشئ حساب جديد',
+                      'auth.sign_up'.tr(),
                       style: TextStyle(color: Colors.blueAccent),
                     ),
                   ),
@@ -65,7 +81,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
             ),
             const SizedBox(height: 50),
             CustomButton(
-              text: "تسجيل الدخول",
+              text: "auth.login".tr(),
               ontap: () {
                 if (_formKey.currentState!.validate()) {
                   _formKey.currentState!.save();
@@ -73,6 +89,8 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                     email: email,
                     password: password,
                   );
+                } else {
+                  _autoValidateMode = AutovalidateMode.always;
                 }
               },
             ),

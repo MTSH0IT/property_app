@@ -1,0 +1,85 @@
+{
+  "app": {
+    "title": "Property App",
+    "slogan": "Find Your Dream Property"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "retry": "Retry",
+    "save": "Save",
+    "cancel": "Cancel",
+    "ok": "OK",
+    "yes": "Yes",
+    "no": "No",
+    "search": "Search",
+    "back": "Back",
+    "continue": "Continue",
+    "skip": "Skip",
+    "get_started": "Get Started",
+    "next": "Next"
+  },
+  "onboarding": {
+    "page1": {
+      "title": "Find Your Perfect Property",
+      "subtitle": "Discover your ideal property from a wide range of available options"
+    },
+    "page2": {
+      "title": "Enjoy a Unique Experience",
+      "subtitle": "Advanced filtering system to help you find exactly what you're looking for"
+    },
+    "page3": {
+      "title": "Explore Your New Property",
+      "subtitle": "View detailed information and high-quality images of available properties"
+    }
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "username": "User name",
+    "email": "Email",
+    "phone": "Phone",
+    "password": "Password",
+    "confirm_password": "Confirm Password",
+    "no_account": "Don't have an account? ",
+    "have_account": "Already have an account? ",
+    "sign_up_success": "Your account has been created successfully. You can now log in.",
+    "login_success": "Logged in successfully",
+    "sign_up": "Sign Up"
+  },
+  "home": {
+    "welcome": "Welcome",
+    "featured_properties": "Featured Properties",
+    "view_all": "View All",
+    "categories": "Categories",
+    "recently_added": "Recently Added"
+  },
+  "property": {
+    "details": "Property Details",
+    "price": "Price",
+    "location": "Location",
+    "bedrooms": "Bedrooms",
+    "bathrooms": "Bathrooms",
+    "area": "Area",
+    "sqm": "sqm",
+    "description": "Description",
+    "features": "Features",
+    "contact_agent": "Contact Agent",
+    "favorite": "Add to Favorites",
+    "share": "Share"
+  },
+  "favorites": {},
+  "profile": {
+    "title": "Profile",
+    "edit_profile": "Edit Profile",
+    "settings": "Settings",
+    "language": "Language",
+    "notifications": "Notifications",
+    "help": "Help & Support",
+    "logout": "Logout"
+  },
+  "errors": {
+    "required_field": "This field is required"
+  },
+  "success": {}
+}

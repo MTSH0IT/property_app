@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:property_app/core/utils/images.dart';
 import 'package:property_app/core/widgets/custom_button.dart';
@@ -42,20 +43,18 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
             children: [
               PageViewItem(
                 imagePath: Assets.assetsImagesHouseSearchingAmico,
-                title: 'جد عقارك المثالي',
-                subTitle:
-                    'ابحث عن عقارك المثالي من بين العديد من الخيارات المتاحة',
+                title: "onboarding.page1.title".tr(),
+                subTitle: "onboarding.page1.subtitle".tr(),
               ),
               PageViewItem(
                 imagePath: Assets.assetsImagesHouseSearchingCuate,
-                title: 'استمتع بتجربة فريدة',
-                subTitle: 'نظام فلترة متقدم يساعدك في العثور على ما تبحث عنه',
+                title: "onboarding.page2.title".tr(),
+                subTitle: "onboarding.page2.subtitle".tr(),
               ),
               PageViewItem(
                 imagePath: Assets.assetsImagesHouseSearchingBro,
-                title: 'تعرف على عقارك الجديد',
-                subTitle:
-                    'عرض معلومات تفصيلية وصور عالية الجودة للعقارات المتاحة',
+                title: "onboarding.page3.title".tr(),
+                subTitle: "onboarding.page3.subtitle".tr(),
               ),
             ],
           ),
@@ -87,7 +86,7 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: CustomButton(
-              text: 'ابدأ الآن',
+              text: "common.get_started".tr(),
               ontap: () {
                 Navigator.pushReplacementNamed(context, LoginView.routeName);
               },
