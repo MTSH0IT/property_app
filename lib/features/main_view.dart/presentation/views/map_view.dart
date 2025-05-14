@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:property_app/features/main_view.dart/presentation/views/widgets/map_view_body.dart';
 
 class MapView extends StatelessWidget {
   const MapView({super.key});
@@ -6,6 +7,6 @@ class MapView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const Scaffold(body: MapViewBody());
   }
 }

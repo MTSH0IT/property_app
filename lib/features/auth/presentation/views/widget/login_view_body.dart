@@ -18,7 +18,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
   AutovalidateMode _autoValidateMode = AutovalidateMode.disabled;
   late String email;
   late String password;
-  bool _scratPassword = false;
+  bool _visiblePassword = true;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -40,18 +40,18 @@ class _LoginViewBodyState extends State<LoginViewBody> {
             CustomTextFormField(
               hintText: "auth.password".tr(),
               textInputType: TextInputType.visiblePassword,
-              obscureText: _scratPassword,
+              obscureText: _visiblePassword,
               onSaved: (value) {
                 password = value!;
               },
               suffixIcon: GestureDetector(
                 onTap: () {
                   setState(() {
-                    _scratPassword = !_scratPassword;
+                    _visiblePassword = !_visiblePassword;
                   });
                 },
                 child:
-                    _scratPassword == false
+                    _visiblePassword == true
                         ? Icon(Icons.visibility_off)
                         : Icon(Icons.visibility),
               ),

@@ -28,6 +28,8 @@ class _SignupViewBodyState extends State<SignupViewBody> {
 
   late String confirmPassword;
 
+  bool _visiblePassword = true;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -67,16 +69,27 @@ class _SignupViewBodyState extends State<SignupViewBody> {
               CustomTextFormField(
                 hintText: "auth.password".tr(),
                 textInputType: TextInputType.visiblePassword,
-                obscureText: true,
+                obscureText: _visiblePassword,
                 onSaved: (value) {
                   password = value!;
                 },
+                suffixIcon: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _visiblePassword = !_visiblePassword;
+                    });
+                  },
+                  child:
+                      _visiblePassword == true
+                          ? Icon(Icons.visibility_off)
+                          : Icon(Icons.visibility),
+                ),
               ),
               SizedBox(height: 16),
               CustomTextFormField(
                 hintText: "auth.confirm_password".tr(),
                 textInputType: TextInputType.visiblePassword,
-                obscureText: true,
+                obscureText: _visiblePassword,
                 onSaved: (value) {
                   confirmPassword = value!;
                 },

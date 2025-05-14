@@ -1,10 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:property_app/core/server/shared_preferences_singleton.dart';
 import 'package:property_app/core/utils/images.dart';
 import 'package:property_app/core/widgets/custom_button.dart';
 import 'package:property_app/features/auth/presentation/views/login_view.dart';
+import 'package:property_app/features/onboardind/presentation/view/widgets/page_indicator.dart';
 import 'package:property_app/features/onboardind/presentation/view/widgets/page_view_item.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnboardingViewBody extends StatefulWidget {
   const OnboardingViewBody({super.key});
@@ -59,23 +60,7 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
             ],
           ),
         ),
-        SmoothPageIndicator(
-          controller: pageController,
-          count: 3,
-          effect: const WormEffect(
-            dotHeight: 15,
-            dotWidth: 15,
-            activeDotColor: Colors.blueAccent,
-            dotColor: Color.fromARGB(183, 215, 221, 224),
-          ),
-          onDotClicked: (index) {
-            pageController.animateToPage(
-              index,
-              duration: const Duration(milliseconds: 500),
-              curve: Curves.easeInOut,
-            );
-          },
-        ),
+        PageIndicator(pageController: pageController),
         const SizedBox(height: 25),
 
         Visibility(
@@ -87,7 +72,9 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: CustomButton(
               text: "common.get_started".tr(),
-              ontap: () {
+              ontap: () async {
+                await Prefs.setBool("isOnboarded", true);
+
                 Navigator.pushReplacementNamed(context, LoginView.routeName);
               },
             ),

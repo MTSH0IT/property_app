@@ -1,61 +1,30 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:property_app/core/utils/const.dart';
+import 'package:property_app/features/main_view.dart/presentation/views/widgets/custom_app_bar.dart';
 import 'package:property_app/features/main_view.dart/presentation/views/widgets/properaty_card.dart';
-import 'package:property_app/features/property_details/presentation/views/property_details_view.dart';
 
-class HomeViewBody extends StatelessWidget {
+class HomeViewBody extends StatefulWidget {
   const HomeViewBody({super.key});
+
+  @override
+  State<HomeViewBody> createState() => _HomeViewBodyState();
+}
+
+class _HomeViewBodyState extends State<HomeViewBody> {
+  List<String> imgList = [
+    'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
+    'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
+    'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=94a1e718d89ca60a6337a6008341ca50&auto=format&fit=crop&w=1950&q=80',
+    'https://images.unsplash.com/photo-1523205771623-e0faa4d2813d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=89719a0d55dd05e2deae4120227e6efc&auto=format&fit=crop&w=1953&q=80',
+    'https://images.unsplash.com/photo-1508704019882-f9cf40e475b4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8c6e5e3aba713b17aa1fe71ab4f0ae5b&auto=format&fit=crop&w=1352&q=80',
+    'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80',
+  ];
 
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        SliverAppBar(
-          floating: true,
-          backgroundColor: kcolor,
-          toolbarHeight: 80,
-          flexibleSpace: FlexibleSpaceBar(
-            background: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'welcome Back !',
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.blueGrey,
-                            ),
-                          ),
-                          Text(
-                            'Mohammad Taher',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Icon(
-                        Icons.search_outlined,
-                        size: 30,
-                        color: Colors.black,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
+        CustomAppBar(),
 
         SliverToBoxAdapter(
           child: Padding(
@@ -84,12 +53,7 @@ class HomeViewBody extends StatelessWidget {
           itemBuilder: (context, index) {
             return Padding(
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, PropertyDetailsView.routeName);
-                },
-                child: PropertyCard(),
-              ),
+              child: PropertyCard(imgList: imgList),
             );
           },
         ),
