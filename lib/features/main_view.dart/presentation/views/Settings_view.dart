@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:property_app/features/main_view.dart/presentation/views/widgets/settings_view_body.dart';
 
 class SettingsView extends StatelessWidget {
   const SettingsView({super.key});
@@ -6,6 +7,14 @@ class SettingsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Settings"),
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
+      body: SettingsViewBody(),
+    );
   }
 }

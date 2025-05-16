@@ -7,6 +7,8 @@ class PropertyDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: PropertyDetailsViewBody());
+    return const Scaffold(
+      body: SafeArea(top: false, child: PropertyDetailsViewBody()),
+    );
   }
 }

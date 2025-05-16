@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:property_app/core/helper_functions/on_generate_routes.dart';
 import 'package:property_app/core/server/shared_preferences_singleton.dart';
 import 'package:property_app/core/utils/custom_bloc_observer.dart';
+import 'package:provider/provider.dart';
+import 'package:property_app/core/theme/theme_provider.dart';
 import 'package:property_app/features/splash/presentation/views/splash_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -30,17 +32,23 @@ class PropertyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
-      locale: context.locale,
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white,
-        fontFamily: 'Cairo',
+    return ChangeNotifierProvider(
+      create: (_) => ThemeProvider(),
+      child: Consumer<ThemeProvider>(
+        builder: (context, themeProvider, child) {
+          return MaterialApp(
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
+            locale: context.locale,
+            debugShowCheckedModeBanner: false,
+            theme: ThemeProvider.lightTheme,
+            darkTheme: ThemeProvider.darkTheme,
+            themeMode: themeProvider.themeMode,
+            onGenerateRoute: onGenerateRoutes,
+            initialRoute: SplashView.routeName,
+          );
+        },
       ),
-      onGenerateRoute: onGenerateRoutes,
-      initialRoute: SplashView.routeName,
     );
   }
 }

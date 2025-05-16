@@ -9,6 +9,7 @@ class CustomAppBar extends StatelessWidget {
     return SliverAppBar(
       floating: true,
       backgroundColor: kcolor,
+      elevation: 0,
       toolbarHeight: 80,
       flexibleSpace: FlexibleSpaceBar(
         background: Padding(

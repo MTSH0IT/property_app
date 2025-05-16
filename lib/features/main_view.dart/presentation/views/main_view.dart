@@ -19,7 +19,11 @@ class _MainViewState extends State<MainView> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: kcolor,
+        elevation: 0,
+        backgroundColor:
+            Theme.of(context).brightness == Brightness.dark
+                ? kSecondaryColor
+                : kcolor,
         type: BottomNavigationBarType.fixed,
         selectedItemColor: Colors.blueAccent,
         items: [
