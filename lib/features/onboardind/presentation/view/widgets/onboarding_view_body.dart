@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:property_app/core/server/shared_preferences_singleton.dart';
+import 'package:property_app/core/services/shared_preferences_singleton.dart';
 import 'package:property_app/core/utils/images.dart';
 import 'package:property_app/core/widgets/custom_button.dart';
 import 'package:property_app/features/auth/presentation/views/login_view.dart';

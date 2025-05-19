@@ -2,13 +2,13 @@ import 'dart:developer';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:property_app/core/helper_functions/save_user_data.dart';
-import 'package:property_app/core/server/database_service.dart';
-import 'package:property_app/core/server/firebase_auth_services.dart';
+import 'package:property_app/core/services/database_service.dart';
+import 'package:property_app/core/services/firebase_auth_services.dart';
 import 'package:property_app/core/utils/custom_exception.dart';
 import 'package:property_app/core/utils/end_poent.dart';
 import 'package:property_app/features/auth/data/models/user_model.dart';
-import 'package:property_app/features/auth/domen/entites/user_entity.dart';
-import 'package:property_app/features/auth/domen/repos/auth_repo.dart';
+import 'package:property_app/features/auth/domain/entites/user_entity.dart';
+import 'package:property_app/features/auth/domain/repos/auth_repo.dart';
 
 class AuthRepoImplementation extends AuthRepo {
   final FirebaseAuthServices firebaseAuthServices;

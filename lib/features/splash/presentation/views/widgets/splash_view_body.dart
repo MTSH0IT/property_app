@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:property_app/core/server/firebase_auth_services.dart';
-import 'package:property_app/core/server/shared_preferences_singleton.dart';
+import 'package:property_app/core/services/firebase_auth_services.dart';
+import 'package:property_app/core/services/shared_preferences_singleton.dart';
 import 'package:property_app/core/utils/images.dart';
 import 'package:property_app/features/auth/presentation/views/login_view.dart';
 import 'package:property_app/features/main_view.dart/presentation/views/main_view.dart';

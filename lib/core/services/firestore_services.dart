@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:property_app/core/server/database_service.dart';
+import 'package:property_app/core/services/database_service.dart';
 import 'package:property_app/core/utils/custom_exception.dart';
 
 class FirestoreServices implements DatabaseService {

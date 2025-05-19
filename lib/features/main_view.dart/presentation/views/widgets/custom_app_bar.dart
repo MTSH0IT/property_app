@@ -7,6 +7,7 @@ class CustomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
+      leading: SizedBox(),
       floating: true,
       backgroundColor: kcolor,
       elevation: 0,

@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:property_app/core/helper_functions/build_snack_bar_message.dart';
 import 'package:property_app/core/widgets/custom_button.dart';
 import 'package:property_app/core/widgets/custom_text_form_field.dart';
-import 'package:property_app/features/auth/domen/entites/user_entity.dart';
+import 'package:property_app/features/auth/domain/entites/user_entity.dart';
 import 'package:property_app/features/auth/presentation/cubits/signup_cubit/signup_cubit.dart';
 
 class SignupViewBody extends StatefulWidget {

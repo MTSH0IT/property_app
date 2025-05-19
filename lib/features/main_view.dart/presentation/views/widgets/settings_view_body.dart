@@ -1,5 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:property_app/features/add_property/presentation/views/add_property_view.dart';
+import 'package:property_app/features/profile/presentation/views/profile_view.dart';
 import 'package:provider/provider.dart';
 import 'package:property_app/core/theme/theme_provider.dart';
 
@@ -16,7 +18,19 @@ class SettingsViewBody extends StatelessWidget {
           icon: Icons.person,
           title: 'الملف الشخصي',
           supTitle: 'انتقل',
-          onTap: () {},
+          onTap: () {
+            Navigator.pushNamed(context, ProfileView.routeName);
+          },
+        ),
+        const SizedBox(height: 12),
+        // add property Setting
+        SettingsCardItem(
+          icon: Icons.add_home_work_outlined,
+          title: 'اضافة عقار',
+          supTitle: 'اعلن',
+          onTap: () {
+            Navigator.pushNamed(context, AddPropertyView.routeName);
+          },
         ),
         const SizedBox(height: 12),
         // Language Setting
