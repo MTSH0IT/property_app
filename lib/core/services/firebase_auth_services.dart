@@ -12,6 +12,10 @@ class FirebaseAuthServices {
     return FirebaseAuth.instance.currentUser != null;
   }
 
+  Future<void> signOut() async {
+    await FirebaseAuth.instance.signOut();
+  }
+
   Future<User> createUserWithEmailAndPassword({
     required String email,
     required String password,

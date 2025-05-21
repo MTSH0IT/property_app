@@ -143,20 +143,23 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
               SizedBox(height: 16),
               if (listItems.isNotEmpty) GridViewFeatures(items: listItems),
               const SizedBox(height: 16),
-              SizedBox(
-                width: double.maxFinite,
-                child: ElevatedButton(
-                  onPressed: () async {
-                    final List<XFile> images = await ImagePicker()
-                        .pickMultiImage(imageQuality: 70);
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 32),
+                child: SizedBox(
+                  width: double.maxFinite,
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      final List<XFile> images = await ImagePicker()
+                          .pickMultiImage(imageQuality: 70);
 
-                    for (var element in images) {
-                      setState(() {
-                        listImages.add(File(element.path));
-                      });
-                    }
-                  },
-                  child: const Text("اضافة الصور من المعرض"),
+                      for (var element in images) {
+                        setState(() {
+                          listImages.add(File(element.path));
+                        });
+                      }
+                    },
+                    child: const Text("اضافة الصور من المعرض"),
+                  ),
                 ),
               ),
               const SizedBox(height: 16),
@@ -206,6 +209,7 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
               SizedBox(
                 width: double.maxFinite,
                 child: TextButton(
+                  style: TextButton.styleFrom(backgroundColor: Colors.black12),
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       _formKey.currentState!.save();
@@ -230,7 +234,16 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
                       });
                     }
                   },
-                  child: Text("نشر"),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: Text(
+                      "نشر العقار",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ],

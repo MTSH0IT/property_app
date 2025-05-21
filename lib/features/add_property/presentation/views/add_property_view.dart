@@ -13,7 +13,7 @@ class AddPropertyView extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.transparent,
       ),
-      body: const AddPropertyViewBody(),
+      body: SafeArea(child: const AddPropertyViewBody()),
     );
   }
 }

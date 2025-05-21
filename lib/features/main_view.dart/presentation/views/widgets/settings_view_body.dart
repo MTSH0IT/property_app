@@ -1,7 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:property_app/core/services/firebase_auth_services.dart';
 import 'package:property_app/features/add_property/presentation/views/add_property_view.dart';
+import 'package:property_app/features/app_info/presentation/view/app_info_view.dart';
+import 'package:property_app/features/favourites/presentation/view/favourites_view.dart';
 import 'package:property_app/features/profile/presentation/views/profile_view.dart';
+import 'package:property_app/features/splash/presentation/views/splash_view.dart';
 import 'package:provider/provider.dart';
 import 'package:property_app/core/theme/theme_provider.dart';
 
@@ -96,7 +100,9 @@ class SettingsViewBody extends StatelessWidget {
           icon: Icons.favorite,
           title: 'المفضلة',
           supTitle: 'انتقل',
-          onTap: () {},
+          onTap: () {
+            Navigator.pushNamed(context, FavouritesView.routeName);
+          },
         ),
         const SizedBox(height: 12),
         // app info Setting
@@ -104,7 +110,9 @@ class SettingsViewBody extends StatelessWidget {
           icon: Icons.info,
           title: 'عن التطبيق',
           supTitle: 'انتقل',
-          onTap: () {},
+          onTap: () {
+            Navigator.pushNamed(context, AppInfoView.routeName);
+          },
         ),
         const SizedBox(height: 12),
         // Logout Setting
@@ -112,7 +120,10 @@ class SettingsViewBody extends StatelessWidget {
           icon: Icons.logout,
           title: 'تسجيل الخروج',
           supTitle: 'مع السلامة',
-          onTap: () {},
+          onTap: () {
+            FirebaseAuthServices().signOut();
+            Navigator.pushReplacementNamed(context, SplashView.routeName);
+          },
         ),
         const SizedBox(height: 12),
       ],
