@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import 'package:property_app/core/widgets/custom_text_form_field.dart';
 import 'package:property_app/features/add_property/data/service/feature_managment.dart';
@@ -51,7 +52,7 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
               ),
               const SizedBox(height: 24),
               CustomTextFormField(
-                hintText: "عنوان قصير ",
+                hintText: 'add_property.title'.tr(),
                 textInputType: TextInputType.text,
                 onSaved: (p0) {
                   title = p0!;
@@ -59,7 +60,7 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
               ),
               const SizedBox(height: 16),
               CustomTextFormField(
-                hintText: "ادخل السعر",
+                hintText: 'add_property.price'.tr(),
                 textInputType: TextInputType.number,
                 onSaved: (p0) {
                   price = int.parse(p0!);
@@ -67,7 +68,7 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
               ),
               const SizedBox(height: 16),
               CustomTextFormField(
-                hintText: "ادخل المدينة",
+                hintText: 'add_property.city'.tr(),
                 textInputType: TextInputType.text,
                 onSaved: (p0) {
                   city = p0!;
@@ -75,7 +76,7 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
               ),
               const SizedBox(height: 16),
               CustomTextFormField(
-                hintText: "ادخل الحي",
+                hintText: 'add_property.county'.tr(),
                 textInputType: TextInputType.text,
                 onSaved: (p0) {
                   county = p0!;
@@ -83,7 +84,7 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
               ),
               const SizedBox(height: 16),
               CustomTextFormField(
-                hintText: "ادخل عدد الغرف",
+                hintText: 'add_property.rooms'.tr(),
                 textInputType: TextInputType.number,
                 onSaved: (p0) {
                   rooms = int.parse(p0!);
@@ -91,7 +92,7 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
               ),
               const SizedBox(height: 16),
               CustomTextFormField(
-                hintText: "ادخل عدد غرف النوم",
+                hintText: 'add_property.bedrooms'.tr(),
                 textInputType: TextInputType.number,
                 onSaved: (p0) {
                   bedrooms = int.parse(p0!);
@@ -99,7 +100,7 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
               ),
               const SizedBox(height: 16),
               CustomTextFormField(
-                hintText: "ادخل عدد الحمامات",
+                hintText: 'add_property.bathrooms'.tr(),
                 textInputType: TextInputType.number,
                 onSaved: (p0) {
                   bathrooms = int.parse(p0!);
@@ -107,7 +108,7 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
               ),
               const SizedBox(height: 16),
               CustomTextFormField(
-                hintText: "ادخل رقم الطابق",
+                hintText: 'add_property.floor'.tr(),
                 textInputType: TextInputType.number,
                 onSaved: (p0) {
                   floor = int.parse(p0!);
@@ -115,7 +116,7 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
               ),
               const SizedBox(height: 16),
               CustomTextFormField(
-                hintText: "ادخل المساحة",
+                hintText: 'add_property.area'.tr(),
                 textInputType: TextInputType.number,
                 onSaved: (p0) {
                   area = int.parse(p0!);
@@ -123,7 +124,7 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
               ),
               const SizedBox(height: 16),
               CustomTextFormField(
-                hintText: "ادخل الوصف",
+                hintText: 'add_property.description'.tr(),
                 textInputType: TextInputType.multiline,
                 maxLines: 5,
                 onSaved: (p0) {
@@ -133,7 +134,7 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
               const SizedBox(height: 16),
               CustomTextField(
                 controller: _controller,
-                title: "ادخل الميزات",
+                title: 'add_property.features'.tr(),
                 onPressed: () {
                   setState(() {
                     FeatureManagment.addItem(listItems, _controller);
@@ -158,7 +159,7 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
                         });
                       }
                     },
-                    child: const Text("اضافة الصور من المعرض"),
+                    child: Text('add_property.add_images'.tr()),
                   ),
                 ),
               ),
@@ -237,7 +238,7 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8),
                     child: Text(
-                      "نشر العقار",
+                      'add_property.publish'.tr(),
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
@@ -263,7 +264,7 @@ class TypeProperty extends StatefulWidget {
 }
 
 class _TypePropertyState extends State<TypeProperty> {
-  String selectedType = 'بيع';
+  String selectedType = 'add_property.type.sale'.tr();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -277,7 +278,7 @@ class _TypePropertyState extends State<TypeProperty> {
             child: GestureDetector(
               onTap: () {
                 setState(() {
-                  selectedType = 'بيع';
+                  selectedType = 'add_property.type.sale'.tr();
                   widget.onChanged(selectedType);
                 });
               },
@@ -285,17 +286,19 @@ class _TypePropertyState extends State<TypeProperty> {
                 padding: const EdgeInsets.symmetric(vertical: 12),
                 decoration: BoxDecoration(
                   color:
-                      selectedType == 'بيع'
+                      selectedType == 'add_property.type.sale'.tr()
                           ? Theme.of(context).primaryColor
                           : Colors.transparent,
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Center(
                   child: Text(
-                    'بيع',
+                    'add_property.type.sale'.tr(),
                     style: TextStyle(
                       color:
-                          selectedType == 'بيع' ? Colors.white : Colors.black,
+                          selectedType == 'add_property.type.sale'.tr()
+                              ? Colors.white
+                              : Colors.black,
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
                     ),
@@ -308,7 +311,7 @@ class _TypePropertyState extends State<TypeProperty> {
             child: GestureDetector(
               onTap: () {
                 setState(() {
-                  selectedType = 'إيجار';
+                  selectedType = 'add_property.type.rent'.tr();
                   widget.onChanged(selectedType);
                 });
               },
@@ -316,17 +319,19 @@ class _TypePropertyState extends State<TypeProperty> {
                 padding: const EdgeInsets.symmetric(vertical: 12),
                 decoration: BoxDecoration(
                   color:
-                      selectedType == 'إيجار'
+                      selectedType == 'add_property.type.rent'.tr()
                           ? Theme.of(context).primaryColor
                           : Colors.transparent,
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Center(
                   child: Text(
-                    'إيجار',
+                    'add_property.type.rent'.tr(),
                     style: TextStyle(
                       color:
-                          selectedType == 'إيجار' ? Colors.white : Colors.black,
+                          selectedType == 'add_property.type.rent'.tr()
+                              ? Colors.white
+                              : Colors.black,
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
                     ),

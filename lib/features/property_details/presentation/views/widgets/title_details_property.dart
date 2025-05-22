@@ -16,7 +16,7 @@ class TitleDetailsProperty extends StatelessWidget {
       children: [
         Text(
           title,
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
@@ -26,7 +26,7 @@ class TitleDetailsProperty extends StatelessWidget {
           ),
           child: Text(
             type,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.deepPurple,
               fontWeight: FontWeight.bold,
             ),

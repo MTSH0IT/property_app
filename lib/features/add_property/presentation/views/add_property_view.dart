@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:property_app/features/add_property/presentation/views/widgets/add_property_view_body.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class AddPropertyView extends StatelessWidget {
   const AddPropertyView({super.key});
@@ -9,7 +10,7 @@ class AddPropertyView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("اضافة عقار"),
+        title: Text("settings.add_property".tr()),
         centerTitle: true,
         backgroundColor: Colors.transparent,
       ),

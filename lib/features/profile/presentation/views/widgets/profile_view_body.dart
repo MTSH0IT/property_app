@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:property_app/features/profile/presentation/views/widgets/profile_info.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ProfileViewBody extends StatelessWidget {
   const ProfileViewBody({super.key});
@@ -11,36 +12,39 @@ class ProfileViewBody extends StatelessWidget {
       child: Column(
         children: [
           ProfileInfo(
-            title: 'اسم المستخدم',
+            title: 'profile.name'.tr(),
             info: 'mohammad',
             icon: Icons.person,
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           ProfileInfo(
-            title: 'البريد الالكتروني',
+            title: 'profile.email'.tr(),
             info: 'mohammad@gmail.com',
             icon: Icons.email,
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           ProfileInfo(
-            title: 'رقم الهاتف',
+            title: 'profile.phone'.tr(),
             info: '0123456789',
             icon: Icons.phone,
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           ProfileInfo(
-            title: 'تاريخ الميلاد',
+            title: 'profile.address'.tr(),
             info: '12/12/2000',
             icon: Icons.calendar_today,
           ),
-          SizedBox(height: 32),
+          const SizedBox(height: 32),
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
               onPressed: () {},
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
-                child: Text('تعديل', style: TextStyle(fontSize: 16)),
+                child: Text(
+                  'profile.edit_profile'.tr(),
+                  style: const TextStyle(fontSize: 16),
+                ),
               ),
             ),
           ),

@@ -40,7 +40,7 @@ class LoginView extends StatelessWidget {
                 'auth.login_success'.tr(),
                 Colors.green,
               );
-              Navigator.pushNamed(context, MainView.routeName);
+              Navigator.pushReplacementNamed(context, MainView.routeName);
             }
             if (state is LoginFailure) {
               buildSnackBarMessage(context, state.message, Colors.red);

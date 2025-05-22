@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class AppInfoBody extends StatelessWidget {
   const AppInfoBody({super.key});
@@ -15,7 +16,7 @@ class AppInfoBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('عن التطبيق'),
+        title: Text('app_info.title'.tr()),
         centerTitle: true,
         elevation: 0,
       ),
@@ -40,29 +41,29 @@ class AppInfoBody extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 24),
-            const Text(
-              'تطبيق العقارات',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            Text(
+              'app.title'.tr(),
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
-            const Text(
-              'الإصدار 1.0.0',
-              style: TextStyle(color: Colors.grey, fontSize: 16),
+            Text(
+              '${'app_info.version'.tr()} 1.0.0',
+              style: const TextStyle(color: Colors.grey, fontSize: 16),
             ),
             const SizedBox(height: 32),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
-                'تطبيق متكامل للعقارات يساعدك في العثور على العقارات المناسبة وبيع وشراء وتملك العقارات بكل سهولة وأمان.',
+                'app_info.description'.tr(),
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16, height: 1.6),
+                style: const TextStyle(fontSize: 16, height: 1.6),
               ),
             ),
             const SizedBox(height: 40),
             _buildInfoCard(
               context,
               Icons.phone,
-              'اتصل بنا',
+              'app_info.contact.phone'.tr(),
               '+966 50 000 0000',
               onTap: () => _launchURL('tel:+966500000000'),
             ),
@@ -70,7 +71,7 @@ class AppInfoBody extends StatelessWidget {
             _buildInfoCard(
               context,
               Icons.email,
-              'البريد الإلكتروني',
+              'app_info.contact.email'.tr(),
               'info@propertyapp.com',
               onTap: () => _launchURL('mailto:info@propertyapp.com'),
             ),
@@ -78,14 +79,14 @@ class AppInfoBody extends StatelessWidget {
             _buildInfoCard(
               context,
               Icons.language,
-              'الموقع الإلكتروني',
+              'app_info.contact.address'.tr(),
               'www.propertyapp.com',
               onTap: () => _launchURL('https://www.propertyapp.com'),
             ),
             const SizedBox(height: 40),
-            const Text(
-              ' 2025 جميع الحقوق محفوظة',
-              style: TextStyle(color: Colors.grey, fontSize: 14),
+            Text(
+              '© 2025 ${'app.title'.tr()}',
+              style: const TextStyle(color: Colors.grey, fontSize: 14),
             ),
           ],
         ),

@@ -19,9 +19,12 @@ class CardCall extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('السعر', style: TextStyle(fontWeight: FontWeight.bold)),
               Text(
-                '$price دولر',
+                'السعر',
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
+              Text(
+                '$price متر مربع',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color:
@@ -47,9 +50,9 @@ class CardCall extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
-              child: const Text(
-                'اتصل الآن',
-                style: TextStyle(
+              child: Text(
+                'اتصل',
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,

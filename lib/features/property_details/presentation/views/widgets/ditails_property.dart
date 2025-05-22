@@ -23,32 +23,31 @@ class DitailsProperty extends StatelessWidget {
         DitailsFeatureItem(
           icon: Icons.door_front_door_outlined,
           value: rooms.toString(),
-          label: 'غرف',
+          label: 'الغرف',
         ),
         const SizedBox(width: 16),
         DitailsFeatureItem(
           icon: Icons.bed_outlined,
           value: bedrooms.toString(),
-          label: 'غرف نوم',
+          label: 'غرف النوم',
         ),
         const SizedBox(width: 16),
         DitailsFeatureItem(
           icon: Icons.bathtub_outlined,
           value: bathrooms.toString(),
-          label: 'حمامات',
+          label: 'الحمامات',
         ),
         const SizedBox(width: 16),
-
         DitailsFeatureItem(
           icon: Icons.domain_rounded,
           value: floor.toString(),
-          label: 'طابق',
+          label: 'الطابق',
         ),
         const SizedBox(width: 16),
         DitailsFeatureItem(
           icon: Icons.square_foot,
           value: area.toString(),
-          label: 'م²',
+          label: 'متر مربع',
         ),
       ],
     );

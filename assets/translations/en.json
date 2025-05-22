@@ -50,5 +50,90 @@
   "errors": {
     "required_field": "This field is required"
   },
-  "success": {}
+  "success": {},
+  "settings": {
+    "profile": "Profile",
+    "add_property": "Add Property",
+    "language": "Language",
+    "theme": "Theme",
+    "favorites": "Favorites",
+    "app_info": "About App",
+    "logout": "Logout",
+    "go": "Go",
+    "advertise": "Advertise",
+    "choose": "Choose",
+    "goodbye": "Goodbye",
+    "choose_language": "Choose Language",
+    "arabic": "Arabic",
+    "english": "English",
+    "choose_theme": "Choose Theme",
+    "dark_mode": "Dark Mode",
+    "light_mode": "Light Mode"
+  },
+  "add_property": {
+    "title": "Short Title",
+    "price": "Enter Price",
+    "city": "Enter City",
+    "county": "Enter County",
+    "rooms": "Enter Number of Rooms",
+    "bedrooms": "Enter Number of Bedrooms",
+    "bathrooms": "Enter Number of Bathrooms",
+    "floor": "Enter Floor Number",
+    "area": "Enter Area",
+    "description": "Enter Description",
+    "features": "Enter Features",
+    "add_images": "Add Images from Gallery",
+    "publish": "Publish Property",
+    "type": {
+      "sale": "Sale",
+      "rent": "Rent"
+    }
+  },
+  "app_info": {
+    "title": "About App",
+    "version": "Version",
+    "description": "Property App is a comprehensive application that helps you find the right property. You can search for properties for sale or rent, add your own properties, and filter results according to your needs.",
+    "features": {
+      "title": "Features",
+      "search": "Advanced property search",
+      "filter": "Filter results by specifications",
+      "favorites": "Save favorite properties",
+      "add": "Add your own properties",
+      "notifications": "Instant notifications for new properties"
+    },
+    "contact": {
+      "title": "Contact Us",
+      "email": "Email",
+      "phone": "Phone",
+      "address": "Address"
+    },
+    "social": {
+      "title": "Follow Us",
+      "facebook": "Facebook",
+      "twitter": "Twitter",
+      "instagram": "Instagram"
+    }
+  },
+  "profile": {
+    "title": "Profile",
+    "edit_profile": "Edit Profile",
+    "personal_info": "Personal Information",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "address": "Address",
+    "save": "Save Changes",
+    "cancel": "Cancel",
+    "change_photo": "Change Photo",
+    "remove_photo": "Remove Photo",
+    "upload_photo": "Upload Photo",
+    "camera": "Camera",
+    "gallery": "Gallery",
+    "my_properties": "My Properties",
+    "favorites": "Favorites",
+    "settings": "Settings",
+    "logout": "Logout",
+    "success_update": "Profile updated successfully",
+    "error_update": "Error updating profile"
+  }
 }

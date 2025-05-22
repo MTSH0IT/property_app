@@ -20,8 +20,8 @@ class SettingsViewBody extends StatelessWidget {
         // profile Setting
         SettingsCardItem(
           icon: Icons.person,
-          title: 'الملف الشخصي',
-          supTitle: 'انتقل',
+          title: 'settings.profile'.tr(),
+          supTitle: 'settings.go'.tr(),
           onTap: () {
             Navigator.pushNamed(context, ProfileView.routeName);
           },
@@ -30,8 +30,8 @@ class SettingsViewBody extends StatelessWidget {
         // add property Setting
         SettingsCardItem(
           icon: Icons.add_home_work_outlined,
-          title: 'اضافة عقار',
-          supTitle: 'اعلن',
+          title: 'settings.add_property'.tr(),
+          supTitle: 'settings.advertise'.tr(),
           onTap: () {
             Navigator.pushNamed(context, AddPropertyView.routeName);
           },
@@ -40,14 +40,17 @@ class SettingsViewBody extends StatelessWidget {
         // Language Setting
         SettingsCardItem(
           icon: Icons.language,
-          title: 'اللغة',
-          supTitle: 'العربية',
+          title: 'settings.language'.tr(),
+          supTitle:
+              context.locale.languageCode == 'ar'
+                  ? 'settings.arabic'.tr()
+                  : 'settings.english'.tr(),
           onTap: () {
             showDialogSettings(
               context,
-              title: 'اختر اللغة',
-              option1: 'العربية',
-              option2: 'الإنجليزية',
+              title: 'settings.choose_language'.tr(),
+              option1: 'settings.arabic'.tr(),
+              option2: 'settings.english'.tr(),
               iconOp1: Icons.language,
               iconOp2: Icons.language,
               onTap1: () {
@@ -65,14 +68,14 @@ class SettingsViewBody extends StatelessWidget {
         // Theme Setting
         SettingsCardItem(
           icon: Icons.light_mode,
-          title: 'الثيم',
-          supTitle: 'اختر',
+          title: 'settings.theme'.tr(),
+          supTitle: 'settings.choose'.tr(),
           onTap: () {
             showDialogSettings(
               context,
-              title: 'اختر الثيم',
-              option1: 'الوضع الليلي',
-              option2: 'الوضع النهاري',
+              title: 'settings.choose_theme'.tr(),
+              option1: 'settings.dark_mode'.tr(),
+              option2: 'settings.light_mode'.tr(),
               iconOp1: Icons.dark_mode,
               iconOp2: Icons.light_mode,
               onTap1: () {
@@ -98,8 +101,8 @@ class SettingsViewBody extends StatelessWidget {
         // favoret Setting
         SettingsCardItem(
           icon: Icons.favorite,
-          title: 'المفضلة',
-          supTitle: 'انتقل',
+          title: 'settings.favorites'.tr(),
+          supTitle: 'settings.go'.tr(),
           onTap: () {
             Navigator.pushNamed(context, FavouritesView.routeName);
           },
@@ -108,8 +111,8 @@ class SettingsViewBody extends StatelessWidget {
         // app info Setting
         SettingsCardItem(
           icon: Icons.info,
-          title: 'عن التطبيق',
-          supTitle: 'انتقل',
+          title: 'settings.app_info'.tr(),
+          supTitle: 'settings.go'.tr(),
           onTap: () {
             Navigator.pushNamed(context, AppInfoView.routeName);
           },
@@ -118,8 +121,8 @@ class SettingsViewBody extends StatelessWidget {
         // Logout Setting
         SettingsCardItem(
           icon: Icons.logout,
-          title: 'تسجيل الخروج',
-          supTitle: 'مع السلامة',
+          title: 'settings.logout'.tr(),
+          supTitle: 'settings.goodbye'.tr(),
           onTap: () {
             FirebaseAuthServices().signOut();
             Navigator.pushReplacementNamed(context, SplashView.routeName);
