@@ -284,20 +284,18 @@ class _TypePropertyState extends State<TypeProperty> {
               child: Container(
                 padding: const EdgeInsets.symmetric(vertical: 12),
                 decoration: BoxDecoration(
-                  // color:
-                  //     selectedType == 'بيع'
-                  //         ? Theme.of(context).primaryColor
-                  //         : Colors.transparent,
+                  color:
+                      selectedType == 'بيع'
+                          ? Theme.of(context).primaryColor
+                          : Colors.transparent,
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Center(
                   child: Text(
                     'بيع',
                     style: TextStyle(
-                      // color:
-                      //     selectedType == 'بيع'
-                      //         ? Colors.white
-                      //         : Colors.black,
+                      color:
+                          selectedType == 'بيع' ? Colors.white : Colors.black,
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
                     ),
@@ -317,20 +315,18 @@ class _TypePropertyState extends State<TypeProperty> {
               child: Container(
                 padding: const EdgeInsets.symmetric(vertical: 12),
                 decoration: BoxDecoration(
-                  // color:
-                  //     selectedType == 'إيجار'
-                  //         ? Theme.of(context).primaryColor
-                  //         : Colors.transparent,
+                  color:
+                      selectedType == 'إيجار'
+                          ? Theme.of(context).primaryColor
+                          : Colors.transparent,
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Center(
                   child: Text(
                     'إيجار',
                     style: TextStyle(
-                      // color:
-                      //     selectedType == 'إيجار'
-                      //         ? Colors.white
-                      //         : Colors.black,
+                      color:
+                          selectedType == 'إيجار' ? Colors.white : Colors.black,
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
                     ),
