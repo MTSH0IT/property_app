@@ -47,37 +47,6 @@
     "login_success": "Logged in successfully",
     "sign_up": "Sign Up"
   },
-  "home": {
-    "welcome": "Welcome",
-    "featured_properties": "Featured Properties",
-    "view_all": "View All",
-    "categories": "Categories",
-    "recently_added": "Recently Added"
-  },
-  "property": {
-    "details": "Property Details",
-    "price": "Price",
-    "location": "Location",
-    "bedrooms": "Bedrooms",
-    "bathrooms": "Bathrooms",
-    "area": "Area",
-    "sqm": "sqm",
-    "description": "Description",
-    "features": "Features",
-    "contact_agent": "Contact Agent",
-    "favorite": "Add to Favorites",
-    "share": "Share"
-  },
-  "favorites": {},
-  "profile": {
-    "title": "Profile",
-    "edit_profile": "Edit Profile",
-    "settings": "Settings",
-    "language": "Language",
-    "notifications": "Notifications",
-    "help": "Help & Support",
-    "logout": "Logout"
-  },
   "errors": {
     "required_field": "This field is required"
   },
