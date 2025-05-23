@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:property_app/core/services/firebase_auth_services.dart';
+import 'package:property_app/core/widgets/card_item.dart';
 import 'package:property_app/features/add_property/presentation/views/add_property_view.dart';
 import 'package:property_app/features/app_info/presentation/view/app_info_view.dart';
 import 'package:property_app/features/favourites/presentation/view/favourites_view.dart';
@@ -18,30 +19,30 @@ class SettingsViewBody extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       children: [
         // profile Setting
-        SettingsCardItem(
+        CardItem(
           icon: Icons.person,
           title: 'settings.profile'.tr(),
-          supTitle: 'settings.go'.tr(),
+          trailingTitle: 'settings.go'.tr(),
           onTap: () {
             Navigator.pushNamed(context, ProfileView.routeName);
           },
         ),
         const SizedBox(height: 12),
         // add property Setting
-        SettingsCardItem(
+        CardItem(
           icon: Icons.add_home_work_outlined,
           title: 'settings.add_property'.tr(),
-          supTitle: 'settings.advertise'.tr(),
+          trailingTitle: 'settings.advertise'.tr(),
           onTap: () {
             Navigator.pushNamed(context, AddPropertyView.routeName);
           },
         ),
         const SizedBox(height: 12),
         // Language Setting
-        SettingsCardItem(
+        CardItem(
           icon: Icons.language,
           title: 'settings.language'.tr(),
-          supTitle:
+          trailingTitle:
               context.locale.languageCode == 'ar'
                   ? 'settings.arabic'.tr()
                   : 'settings.english'.tr(),
@@ -66,10 +67,10 @@ class SettingsViewBody extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         // Theme Setting
-        SettingsCardItem(
+        CardItem(
           icon: Icons.light_mode,
           title: 'settings.theme'.tr(),
-          supTitle: 'settings.choose'.tr(),
+          trailingTitle: 'settings.choose'.tr(),
           onTap: () {
             showDialogSettings(
               context,
@@ -99,30 +100,30 @@ class SettingsViewBody extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         // favoret Setting
-        SettingsCardItem(
+        CardItem(
           icon: Icons.favorite,
           title: 'settings.favorites'.tr(),
-          supTitle: 'settings.go'.tr(),
+          trailingTitle: 'settings.go'.tr(),
           onTap: () {
             Navigator.pushNamed(context, FavouritesView.routeName);
           },
         ),
         const SizedBox(height: 12),
         // app info Setting
-        SettingsCardItem(
+        CardItem(
           icon: Icons.info,
           title: 'settings.app_info'.tr(),
-          supTitle: 'settings.go'.tr(),
+          trailingTitle: 'settings.go'.tr(),
           onTap: () {
             Navigator.pushNamed(context, AppInfoView.routeName);
           },
         ),
         const SizedBox(height: 12),
         // Logout Setting
-        SettingsCardItem(
+        CardItem(
           icon: Icons.logout,
           title: 'settings.logout'.tr(),
-          supTitle: 'settings.goodbye'.tr(),
+          trailingTitle: 'settings.goodbye'.tr(),
           onTap: () {
             FirebaseAuthServices().signOut();
             Navigator.pushReplacementNamed(context, SplashView.routeName);
@@ -130,69 +131,6 @@ class SettingsViewBody extends StatelessWidget {
         ),
         const SizedBox(height: 12),
       ],
-    );
-  }
-}
-
-class SettingsCardItem extends StatelessWidget {
-  const SettingsCardItem({
-    super.key,
-    required this.title,
-    required this.icon,
-    this.onTap,
-    this.supTitle,
-  });
-  final String title;
-  final String? supTitle;
-  final IconData icon;
-  final Function()? onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      elevation: 2,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      child: InkWell(
-        onTap: onTap,
-
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: ListTile(
-            leading: Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                color: Colors.deepPurple.withValues(alpha: 0.1),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Icon(icon, color: Colors.deepPurple),
-            ),
-            title: Text(
-              title,
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-            ),
-            trailing: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  supTitle ?? '',
-                  style: TextStyle(color: Colors.grey[600], fontSize: 14),
-                ),
-                const SizedBox(width: 8),
-                Icon(
-                  Icons.arrow_forward_ios,
-                  size: 16,
-                  color: Colors.grey[400],
-                ),
-              ],
-            ),
-            contentPadding: const EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 4,
-            ),
-          ),
-        ),
-      ),
     );
   }
 }

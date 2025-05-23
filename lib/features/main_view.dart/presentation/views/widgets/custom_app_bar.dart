@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:property_app/core/helper_functions/get_user_data.dart';
 import 'package:property_app/core/utils/const.dart';
 
 class CustomAppBar extends StatelessWidget {
@@ -29,7 +30,7 @@ class CustomAppBar extends StatelessWidget {
                         style: TextStyle(fontSize: 20, color: Colors.blueGrey),
                       ),
                       Text(
-                        'Mohammad Taher',
+                        getUserData().name,
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
