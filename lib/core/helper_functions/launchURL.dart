@@ -1,8 +1,10 @@
+import 'package:flutter/material.dart';
+import 'package:property_app/core/helper_functions/build_snack_bar_message.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-Future<void> launchURL(String url) async {
+Future<void> buildlaunchURL(BuildContext context, String url) async {
   final Uri uri = Uri.parse(url);
   if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
-    throw Exception('Could not launch $url');
+    buildSnackBarMessage(context, 'Could not launch $url', Colors.red);
   }
 }

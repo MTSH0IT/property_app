@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:property_app/core/helper_functions/launchURL.dart';
 
 class CardCall extends StatelessWidget {
   const CardCall({super.key, required this.phone, required this.price});
@@ -42,7 +42,7 @@ class CardCall extends StatelessWidget {
             height: 50,
             child: ElevatedButton(
               onPressed: () {
-                launchUrl(Uri.parse('tel:$phone'));
+                buildlaunchURL(context, 'tel:$phone');
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.deepPurple,

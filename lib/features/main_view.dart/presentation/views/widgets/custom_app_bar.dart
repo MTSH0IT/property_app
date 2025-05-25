@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:property_app/core/helper_functions/get_user_data.dart';
 import 'package:property_app/core/utils/const.dart';
+import 'package:property_app/features/filter_property/presentation/view/filter_property_view.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({super.key});
@@ -39,7 +40,19 @@ class CustomAppBar extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Icon(Icons.search_outlined, size: 30, color: Colors.black),
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        FilterPropertyView.routeName,
+                      );
+                    },
+                    icon: Icon(
+                      Icons.search_outlined,
+                      size: 30,
+                      color: Colors.black,
+                    ),
+                  ),
                 ],
               ),
             ],

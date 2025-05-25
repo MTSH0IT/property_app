@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Property App",
-    "slogan": "Find Your Dream Property"
+    "slogan": "Find Your Perfect Property"
   },
   "common": {
     "loading": "Loading...",
@@ -19,31 +19,47 @@
     "get_started": "Get Started",
     "next": "Next"
   },
+  "filter": {
+    "title": "Filter Properties",
+    "property_type": "Property Type",
+    "price_range": "Price Range",
+    "city": "City",
+    "rooms": "Number of Rooms",
+    "bedrooms": "Number of Bedrooms",
+    "bathrooms": "Number of Bathrooms",
+    "area": "Area (m²)",
+    "min_area": "Minimum",
+    "max_area": "Maximum",
+    "min_rooms": "Enter minimum number of rooms",
+    "min_bedrooms": "Enter minimum number of bedrooms",
+    "min_bathrooms": "Enter minimum number of bathrooms",
+    "search": "Search"
+  },
   "onboarding": {
     "page1": {
       "title": "Find Your Perfect Property",
-      "subtitle": "Discover your ideal property from a wide range of available options"
+      "subtitle": "Search for your ideal property from many available options"
     },
     "page2": {
       "title": "Enjoy a Unique Experience",
-      "subtitle": "Advanced filtering system to help you find exactly what you're looking for"
+      "subtitle": "Advanced filtering system helps you find what you're looking for"
     },
     "page3": {
-      "title": "Explore Your New Property",
+      "title": "Get to Know Your New Property",
       "subtitle": "View detailed information and high-quality images of available properties"
     }
   },
   "auth": {
     "login": "Login",
     "register": "Register",
-    "username": "User name",
+    "username": "Username",
     "email": "Email",
-    "phone": "Phone",
+    "phone": "Phone Number",
     "password": "Password",
     "confirm_password": "Confirm Password",
     "no_account": "Don't have an account? ",
     "have_account": "Already have an account? ",
-    "sign_up_success": "Your account has been created successfully. You can now log in.",
+    "sign_up_success": "Your account has been created successfully. You can now login.",
     "login_success": "Logged in successfully",
     "sign_up": "Sign Up"
   },
@@ -120,7 +136,7 @@
     "personal_info": "Personal Information",
     "name": "Name",
     "email": "Email",
-    "phone": "Phone",
+    "phone": "Phone Number",
     "address": "Address",
     "save": "Save Changes",
     "cancel": "Cancel",
