@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:property_app/core/utils/const.dart';
 import 'package:property_app/features/property_details/presentation/views/property_details_view.dart';
@@ -11,7 +12,8 @@ class FooterCardProperty extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          '200.000 دولر',
+          '${'property_details.price'.tr()} 200.000'
+          r"$",
           style: TextStyle(
             color:
                 Theme.of(context).brightness == Brightness.dark
@@ -26,7 +28,7 @@ class FooterCardProperty extends StatelessWidget {
             Navigator.pushNamed(context, PropertyDetailsView.routeName);
           },
           icon: const Icon(Icons.arrow_back_ios_new, size: 14),
-          label: const Text('عرض التفاصيل'),
+          label: Text('property_details.details'.tr()),
           style: TextButton.styleFrom(
             foregroundColor: kPrimaryColor,
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),

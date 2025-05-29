@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:property_app/features/property_details/presentation/views/widgets/ditails_feature_item.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class DitailsProperty extends StatelessWidget {
   const DitailsProperty({
@@ -23,31 +24,31 @@ class DitailsProperty extends StatelessWidget {
         DitailsFeatureItem(
           icon: Icons.door_front_door_outlined,
           value: rooms.toString(),
-          label: 'الغرف',
+          label: 'property_details.rooms'.tr(),
         ),
         const SizedBox(width: 16),
         DitailsFeatureItem(
           icon: Icons.bed_outlined,
           value: bedrooms.toString(),
-          label: 'غرف النوم',
+          label: 'property_details.bedrooms'.tr(),
         ),
         const SizedBox(width: 16),
         DitailsFeatureItem(
           icon: Icons.bathtub_outlined,
           value: bathrooms.toString(),
-          label: 'الحمامات',
+          label: 'property_details.bathrooms'.tr(),
         ),
         const SizedBox(width: 16),
         DitailsFeatureItem(
           icon: Icons.domain_rounded,
           value: floor.toString(),
-          label: 'الطابق',
+          label: 'property_details.floor'.tr(),
         ),
         const SizedBox(width: 16),
         DitailsFeatureItem(
           icon: Icons.square_foot,
           value: area.toString(),
-          label: 'متر مربع',
+          label: 'property_details.area'.tr(),
         ),
       ],
     );

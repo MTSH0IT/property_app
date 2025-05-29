@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:property_app/features/main_view.dart/presentation/views/widgets/custom_app_bar.dart';
+import 'package:property_app/features/main_view.dart/presentation/views/widgets/image_property.dart';
 import 'package:property_app/features/main_view.dart/presentation/views/widgets/properaty_card.dart';
 
 class HomeViewBody extends StatefulWidget {
@@ -29,20 +30,18 @@ class _HomeViewBodyState extends State<HomeViewBody> {
         SliverToBoxAdapter(
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 16),
-            child: CarouselSlider.builder(
-              itemCount: 5,
-              itemBuilder: (context, index, realIndex) {
-                return Container(
-                  color: Colors.blueGrey,
-                  child: Center(
-                    child: Text('Item $index', style: TextStyle(fontSize: 20)),
-                  ),
-                );
-              },
-              options: CarouselOptions(
-                aspectRatio: 4 / 2,
-                autoPlay: true,
-                enlargeCenterPage: true,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(25),
+              child: CarouselSlider.builder(
+                itemCount: 5,
+                itemBuilder: (context, index, realIndex) {
+                  return ImagesProperty(image: imgList[index]);
+                },
+                options: CarouselOptions(
+                  aspectRatio: 4 / 2,
+                  autoPlay: true,
+                  enlargeCenterPage: true,
+                ),
               ),
             ),
           ),

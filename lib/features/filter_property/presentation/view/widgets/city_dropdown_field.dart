@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class CityDropdownField extends StatelessWidget {
   const CityDropdownField({
@@ -23,6 +24,10 @@ class CityDropdownField extends StatelessWidget {
   Widget build(BuildContext context) {
     return DropdownButtonFormField<String>(
       value: selectedCity,
+      hint: Text(
+        'add_property.chooseCity'.tr(),
+        style: const TextStyle(color: Colors.black),
+      ),
       decoration: InputDecoration(
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
         contentPadding: const EdgeInsets.symmetric(horizontal: 16),

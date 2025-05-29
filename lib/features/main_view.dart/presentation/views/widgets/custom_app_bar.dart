@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:property_app/core/helper_functions/get_user_data.dart';
 import 'package:property_app/core/utils/const.dart';
@@ -27,7 +28,7 @@ class CustomAppBar extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'welcome Back !',
+                        'profile.welcome'.tr(),
                         style: TextStyle(fontSize: 20, color: Colors.blueGrey),
                       ),
                       Text(

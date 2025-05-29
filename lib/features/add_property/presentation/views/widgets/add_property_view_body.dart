@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:property_app/core/helper_functions/build_snack_bar_message.dart';
 
 import 'package:property_app/core/widgets/custom_text_form_field.dart';
 import 'package:property_app/features/add_property/data/service/feature_managment.dart';
@@ -10,6 +11,7 @@ import 'package:property_app/features/add_property/presentation/views/widgets/cu
 import 'package:property_app/features/add_property/presentation/views/widgets/grid_view_features.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:property_app/features/add_property/presentation/views/widgets/type_property.dart';
+import 'package:property_app/features/filter_property/presentation/view/widgets/city_dropdown_field.dart';
 
 class AddPropertyViewBody extends StatefulWidget {
   const AddPropertyViewBody({super.key});
@@ -24,10 +26,10 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
   final TextEditingController _controller = TextEditingController();
   List<String> listItems = [];
   List<File> listImages = [];
-  late String selectedType;
+  String selectedType = "بيع";
   late String title;
   late int price;
-  late String city;
+  String? selectedCity;
   late String county;
   late int rooms;
   late int bedrooms;
@@ -52,6 +54,15 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
                 },
               ),
               const SizedBox(height: 24),
+              CityDropdownField(
+                selectedCity: selectedCity,
+                onChanged: (String? newValue) {
+                  setState(() {
+                    selectedCity = newValue;
+                  });
+                },
+              ),
+              const SizedBox(height: 16),
               CustomTextFormField(
                 hintText: 'add_property.title'.tr(),
                 textInputType: TextInputType.text,
@@ -68,14 +79,7 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
                 },
               ),
               const SizedBox(height: 16),
-              CustomTextFormField(
-                hintText: 'add_property.city'.tr(),
-                textInputType: TextInputType.text,
-                onSaved: (p0) {
-                  city = p0!;
-                },
-              ),
-              const SizedBox(height: 16),
+
               CustomTextFormField(
                 hintText: 'add_property.county'.tr(),
                 textInputType: TextInputType.text,
@@ -214,12 +218,20 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
                   style: TextButton.styleFrom(backgroundColor: Colors.black12),
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
+                      if (selectedCity == null) {
+                        buildSnackBarMessage(
+                          context,
+                          'اختر المدينة',
+                          Colors.orange,
+                        );
+                        return;
+                      }
                       _formKey.currentState!.save();
                       PropertyEntity(
                         title: title,
                         type: selectedType,
                         price: price,
-                        city: city,
+                        city: selectedCity!,
                         county: county,
                         description: description,
                         rooms: rooms,

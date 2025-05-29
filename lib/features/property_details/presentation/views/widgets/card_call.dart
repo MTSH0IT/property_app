@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:property_app/core/helper_functions/launchURL.dart';
 
@@ -20,11 +21,12 @@ class CardCall extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'السعر',
+                'property_details.price'.tr(),
                 style: const TextStyle(fontWeight: FontWeight.bold),
               ),
               Text(
-                '$price متر مربع',
+                '$price'
+                r"$",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color:
@@ -51,7 +53,7 @@ class CardCall extends StatelessWidget {
                 ),
               ),
               child: Text(
-                'اتصل',
+                'property_details.call'.tr(),
                 style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,

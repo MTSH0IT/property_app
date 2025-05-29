@@ -87,6 +87,7 @@
     "light_mode": "الوضع النهاري"
   },
   "add_property": {
+    "chooseCity": "اختر المدينة",
     "title": "عنوان قصير",
     "price": "ادخل السعر",
     "city": "ادخل المدينة",
@@ -150,6 +151,20 @@
     "settings": "الإعدادات",
     "logout": "تسجيل الخروج",
     "success_update": "تم تحديث الملف الشخصي بنجاح",
-    "error_update": "حدث خطأ أثناء تحديث الملف الشخصي"
+    "error_update": "حدث خطأ أثناء تحديث الملف الشخصي",
+    "welcome": "مرحبا بك"
+  },
+  "property_details": {
+    "rooms": "الغرف",
+    "bedrooms": "غرف النوم",
+    "bathrooms": "الحمامات",
+    "floor": "الطابق",
+    "area": "المساحة",
+    "price": "السعر",
+    "call": "اتصل",
+    "description": "الوصف",
+    "features": "المميزات",
+    "details": "عرض التفاصيل"
   }
+ 
 }

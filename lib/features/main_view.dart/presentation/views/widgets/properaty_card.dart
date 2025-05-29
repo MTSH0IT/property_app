@@ -7,6 +7,7 @@ import 'package:property_app/features/main_view.dart/presentation/views/widgets/
 import 'package:property_app/features/main_view.dart/presentation/views/widgets/image_property.dart';
 import 'package:property_app/features/main_view.dart/presentation/views/widgets/location_proprty.dart';
 import 'package:property_app/features/main_view.dart/presentation/views/widgets/title_card_proprty.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class PropertyCard extends StatefulWidget {
   const PropertyCard({super.key, required this.imgList});
@@ -97,10 +98,23 @@ class _PropertyCardState extends State<PropertyCard> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    FeatureItemCard(icon: Icons.bed, text: '4 غرف'),
-                    FeatureItemCard(icon: Icons.bathtub, text: '3 حمامات'),
-                    FeatureItemCard(icon: Icons.square_foot, text: '250 م²'),
-                    FeatureItemCard(icon: Icons.king_bed, text: '3 غرف نوم'),
+                    FeatureItemCard(
+                      icon: Icons.door_front_door_outlined,
+                      text: '5 ${'property_details.rooms'.tr()}',
+                    ),
+
+                    FeatureItemCard(
+                      icon: Icons.king_bed,
+                      text: '3 ${'property_details.bedrooms'.tr()}',
+                    ),
+                    FeatureItemCard(
+                      icon: Icons.bathtub,
+                      text: '3 ${'property_details.bathrooms'.tr()}',
+                    ),
+                    FeatureItemCard(
+                      icon: Icons.square_foot,
+                      text: '300 ${'property_details.area'.tr()}',
+                    ),
                   ],
                 ),
                 const SizedBox(height: 8),

@@ -10,7 +10,7 @@ class TypeProperty extends StatefulWidget {
 }
 
 class _TypePropertyState extends State<TypeProperty> {
-  String selectedType = 'add_property.type.sale'.tr();
+  String selectedType = "بيع";
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,7 +24,7 @@ class _TypePropertyState extends State<TypeProperty> {
             child: GestureDetector(
               onTap: () {
                 setState(() {
-                  selectedType = 'add_property.type.sale'.tr();
+                  selectedType = 'بيع';
                   widget.onChanged(selectedType);
                 });
               },
@@ -32,7 +32,7 @@ class _TypePropertyState extends State<TypeProperty> {
                 padding: const EdgeInsets.symmetric(vertical: 12),
                 decoration: BoxDecoration(
                   color:
-                      selectedType == 'add_property.type.sale'.tr()
+                      selectedType == 'بيع'
                           ? Theme.of(context).primaryColor
                           : Colors.transparent,
                   borderRadius: BorderRadius.circular(12),
@@ -42,9 +42,7 @@ class _TypePropertyState extends State<TypeProperty> {
                     'add_property.type.sale'.tr(),
                     style: TextStyle(
                       color:
-                          selectedType == 'add_property.type.sale'.tr()
-                              ? Colors.white
-                              : Colors.black,
+                          selectedType == 'بيع' ? Colors.white : Colors.black,
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
                     ),
@@ -57,7 +55,7 @@ class _TypePropertyState extends State<TypeProperty> {
             child: GestureDetector(
               onTap: () {
                 setState(() {
-                  selectedType = 'add_property.type.rent'.tr();
+                  selectedType = 'إيجار';
                   widget.onChanged(selectedType);
                 });
               },
@@ -65,7 +63,7 @@ class _TypePropertyState extends State<TypeProperty> {
                 padding: const EdgeInsets.symmetric(vertical: 12),
                 decoration: BoxDecoration(
                   color:
-                      selectedType == 'add_property.type.rent'.tr()
+                      selectedType == 'إيجار'
                           ? Theme.of(context).primaryColor
                           : Colors.transparent,
                   borderRadius: BorderRadius.circular(12),
@@ -75,9 +73,7 @@ class _TypePropertyState extends State<TypeProperty> {
                     'add_property.type.rent'.tr(),
                     style: TextStyle(
                       color:
-                          selectedType == 'add_property.type.rent'.tr()
-                              ? Colors.white
-                              : Colors.black,
+                          selectedType == 'إيجار' ? Colors.white : Colors.black,
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
                     ),

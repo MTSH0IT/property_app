@@ -7,6 +7,7 @@ import 'package:property_app/features/property_details/presentation/views/widget
 import 'package:property_app/features/property_details/presentation/views/widgets/custom_icon_button.dart';
 import 'package:property_app/features/property_details/presentation/views/widgets/ditails_property.dart';
 import 'package:property_app/features/property_details/presentation/views/widgets/title_details_property.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class PropertyDetailsViewBody extends StatefulWidget {
   const PropertyDetailsViewBody({super.key});
@@ -101,7 +102,10 @@ class _PropertyDetailsViewBodyState extends State<PropertyDetailsViewBody> {
                   area: 320,
                 ),
                 const SizedBox(height: 24),
-                Text('الوصف', style: TextStyle(fontWeight: FontWeight.bold)),
+                Text(
+                  'property_details.description'.tr(),
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
                 const SizedBox(height: 8),
                 Text(
                   'فيلا فاخرة للبيع في حي النخيل الفاخر، مساحة الأرض 600 متر مربع، مساحة البناء 320 متر مربع، تتكون من 4 غرف نوم ماستر، 3 دورات مياه، صالة، مجلس رجال، مجلس نساء، مطبخ، ملحق خارجي، مواقف سيارات، مدخل سيارة، حديقة، مسبح، غرفة خادمة، مخزن، نظام أمني، نظام ري آلي، تكييف مركزي، نظام إنذار حريق، نظام إنذار سرقة، نظام كاميرات مراقبة، نظام صوتي، نظام إنارة خارجية، نظام ري آلي، نظام صرف صحي، نظام كهرباء احتياطي، نظام مياه ساخنة، نظام تدفئة مركزية، نظام تكييف مركزي، نظام إنذار حريق، نظام إنذار سرقة، نظام كاميرات مراقبة، نظام صوتي، نظام إنارة خارجية، نظام ري آلي، نظام صرف صحي، نظام كهرباء احتياطي، نظام مياه ساخنة، نظام تدفئة مركزية، نظام تكييف مركزي.',
@@ -109,7 +113,10 @@ class _PropertyDetailsViewBodyState extends State<PropertyDetailsViewBody> {
                   textAlign: TextAlign.right,
                 ),
                 const SizedBox(height: 24),
-                Text('المميزات', style: TextStyle(fontWeight: FontWeight.bold)),
+                Text(
+                  'property_details.features'.tr(),
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
                 const SizedBox(height: 12),
                 Wrap(
                   spacing: 8,
