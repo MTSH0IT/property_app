@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:property_app/core/helper_functions/build_snack_bar_message.dart';
+import 'package:property_app/core/services/position_service.dart';
 
 import 'package:property_app/core/widgets/custom_text_form_field.dart';
 import 'package:property_app/features/add_property/data/service/feature_managment.dart';
@@ -37,6 +38,8 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
   late int floor;
   late int area;
   late String description;
+  double? latitude;
+  double? longitude;
 
   @override
   Widget build(BuildContext context) {
@@ -137,6 +140,51 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
                 },
               ),
               const SizedBox(height: 16),
+              SizedBox(
+                width: double.maxFinite,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: CustomTextFormField(
+                        hintText:
+                            latitude == null
+                                ? "add_property.latitude".tr()
+                                : latitude.toString(),
+                        textInputType: TextInputType.number,
+                        onSaved: (p0) {
+                          latitude = double.parse(p0!);
+                        },
+                      ),
+                    ),
+                    Expanded(
+                      child: CustomTextFormField(
+                        hintText:
+                            longitude == null
+                                ? "add_property.longitude".tr()
+                                : longitude.toString(),
+                        textInputType: TextInputType.number,
+                        onSaved: (p0) {
+                          longitude = double.parse(p0!);
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 16),
+              OutlinedButton(
+                onPressed: () async {
+                  final location = await PositionService().determinePosition(
+                    context,
+                  );
+                  setState(() {
+                    latitude = location.latitude;
+                    longitude = location.longitude;
+                  });
+                },
+                child: Text("add_property.get_location".tr()),
+              ),
+              const SizedBox(height: 16),
               CustomTextField(
                 controller: _controller,
                 title: 'add_property.features'.tr(),
@@ -153,7 +201,7 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
                 padding: const EdgeInsets.symmetric(horizontal: 32),
                 child: SizedBox(
                   width: double.maxFinite,
-                  child: ElevatedButton(
+                  child: OutlinedButton(
                     onPressed: () async {
                       final List<XFile> images = await ImagePicker()
                           .pickMultiImage(imageQuality: 70);
@@ -239,6 +287,8 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
                         bathrooms: bathrooms,
                         floor: floor,
                         area: area,
+                        latitude: latitude!,
+                        longitude: longitude!,
                         features: listItems,
                         image: listImages,
                       );

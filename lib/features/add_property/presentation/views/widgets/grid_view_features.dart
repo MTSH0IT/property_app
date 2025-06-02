@@ -15,7 +15,7 @@ class _GridViewFeaturesState extends State<GridViewFeatures> {
     return GridView.builder(
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        childAspectRatio: 2,
+        childAspectRatio: 3 / 1,
       ),
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
@@ -23,6 +23,7 @@ class _GridViewFeaturesState extends State<GridViewFeatures> {
       itemBuilder:
           (context, index) => Card(
             child: ListTile(
+              contentPadding: EdgeInsets.only(right: 16),
               title: Text(widget.items[index]),
               trailing: IconButton(
                 icon: Icon(Icons.delete),

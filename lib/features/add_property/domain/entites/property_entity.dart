@@ -12,6 +12,8 @@ class PropertyEntity {
   final int bathrooms;
   final int floor;
   final int area;
+  final double latitude;
+  final double longitude;
   final List<String> features;
   final List<File> image;
 
@@ -27,6 +29,8 @@ class PropertyEntity {
     required this.bathrooms,
     required this.floor,
     required this.area,
+    required this.latitude,
+    required this.longitude,
     required this.features,
     required this.image,
   });

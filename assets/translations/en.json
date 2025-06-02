@@ -101,6 +101,9 @@
     "features": "Enter Features",
     "add_images": "Add Images from Gallery",
     "publish": "Publish Property",
+    "get_location": "Get Location",
+    "latitude": "Enter Latitude",
+    "longitude": "Enter Longitude",
     "type": {
       "sale": "Sale",
       "rent": "Rent"
