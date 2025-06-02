@@ -1,4 +1,0 @@
-arb-dir: lib/core/language
-template-arb-file: en.arb
-output-localization-file: app_localizations.dart
-output-class: AppLocalizations 
