@@ -21,7 +21,6 @@ class CustomTextField extends StatelessWidget {
         hintText: title,
         suffixIcon: IconButton(icon: Icon(Icons.add), onPressed: onPressed),
       ),
-      //onSubmitted: (_) => _addItem(),
     );
   }
 

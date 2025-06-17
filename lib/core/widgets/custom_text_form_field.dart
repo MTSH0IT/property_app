@@ -10,6 +10,8 @@ class CustomTextFormField extends StatelessWidget {
     this.onSaved,
     this.obscureText = false,
     this.maxLines = 1,
+    this.enabled,
+    this.onChanged,
   });
   final String hintText;
   final TextInputType textInputType;
@@ -17,12 +19,17 @@ class CustomTextFormField extends StatelessWidget {
   final void Function(String?)? onSaved;
   final bool obscureText;
   final int? maxLines;
+  final bool? enabled;
+  final void Function(String?)? onChanged;
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      enabled: enabled,
       maxLines: maxLines,
       obscureText: obscureText,
       onSaved: onSaved,
+      onChanged: onChanged,
       validator: (value) {
         if (value == null || value.isEmpty) {
           return "errors.required_field".tr();

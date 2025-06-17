@@ -2,12 +2,14 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:property_app/core/helper_functions/build_snack_bar_message.dart';
 import 'package:property_app/core/services/position_service.dart';
 
 import 'package:property_app/core/widgets/custom_text_form_field.dart';
 import 'package:property_app/features/add_property/data/service/feature_managment.dart';
 import 'package:property_app/features/add_property/domain/entites/property_entity.dart';
+import 'package:property_app/features/add_property/presentation/cubit/add_property_cubit.dart';
 import 'package:property_app/features/add_property/presentation/views/widgets/custom_text_field.dart';
 import 'package:property_app/features/add_property/presentation/views/widgets/grid_view_features.dart';
 import 'package:image_picker/image_picker.dart';
@@ -82,7 +84,6 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
                 },
               ),
               const SizedBox(height: 16),
-
               CustomTextFormField(
                 hintText: 'add_property.county'.tr(),
                 textInputType: TextInputType.text,
@@ -151,7 +152,8 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
                                 ? "add_property.latitude".tr()
                                 : latitude.toString(),
                         textInputType: TextInputType.number,
-                        onSaved: (p0) {
+                        //enabled: latitude == null,
+                        onChanged: (p0) {
                           latitude = double.parse(p0!);
                         },
                       ),
@@ -163,7 +165,8 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
                                 ? "add_property.longitude".tr()
                                 : longitude.toString(),
                         textInputType: TextInputType.number,
-                        onSaved: (p0) {
+                        //enabled: longitude == null,
+                        onChanged: (p0) {
                           longitude = double.parse(p0!);
                         },
                       ),
@@ -275,7 +278,7 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
                         return;
                       }
                       _formKey.currentState!.save();
-                      PropertyEntity(
+                      PropertyEntity property = PropertyEntity(
                         title: title,
                         type: selectedType,
                         price: price,
@@ -292,6 +295,7 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
                         features: listItems,
                         image: listImages,
                       );
+                      context.read<AddPropertyCubit>().addProperty(property);
                     } else {
                       setState(() {
                         autovalidateMode = AutovalidateMode.always;
