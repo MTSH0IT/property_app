@@ -1,5 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:property_app/core/entites/property_entity.dart';
+import 'package:property_app/core/utils/images.dart';
 import 'package:property_app/features/main_view.dart/presentation/views/widgets/Custom_image_cunter.dart';
 import 'package:property_app/features/main_view.dart/presentation/views/widgets/custom_dots_indicator.dart';
 import 'package:property_app/features/main_view.dart/presentation/views/widgets/feature_item_crad.dart';
@@ -10,9 +13,9 @@ import 'package:property_app/features/main_view.dart/presentation/views/widgets/
 import 'package:easy_localization/easy_localization.dart';
 
 class PropertyCard extends StatefulWidget {
-  const PropertyCard({super.key, required this.imgList});
+  const PropertyCard({super.key, required this.property});
 
-  final List<String> imgList;
+  final PropertyEntity property;
 
   @override
   State<PropertyCard> createState() => _PropertyCardState();
@@ -37,9 +40,14 @@ class _PropertyCardState extends State<PropertyCard> {
                   top: Radius.circular(16),
                 ),
                 child: CarouselSlider.builder(
-                  itemCount: widget.imgList.length,
+                  itemCount: widget.property.imagesUrl!.length,
                   itemBuilder: (context, index, realIndex) {
-                    return ImagesProperty(image: widget.imgList[index]);
+                    if (widget.property.imagesUrl!.isNotEmpty) {
+                      return ImagesProperty(
+                        image: widget.property.imagesUrl![index],
+                      );
+                    }
+                    return SvgPicture.asset(Assets.assetsImagesForSaleRafiki);
                   },
                   options: CarouselOptions(
                     height: 200,
@@ -56,27 +64,31 @@ class _PropertyCardState extends State<PropertyCard> {
               ),
 
               // Image Counter
-              if (widget.imgList.length > 1)
-                Positioned(
-                  top: 12,
-                  right: 12,
-                  child: CustomImgeCunter(
-                    current: _current,
-                    imageNumper: widget.imgList.length,
-                  ),
+              Positioned(
+                top: 12,
+                right: 12,
+                child: CustomImgeCunter(
+                  current: _current,
+                  imageNumper:
+                      widget.property.imagesUrl!.isEmpty
+                          ? 1
+                          : widget.property.imagesUrl!.length,
                 ),
+              ),
 
               // Dots Indicator
-              if (widget.imgList.length > 1)
-                Positioned(
-                  bottom: 12,
-                  left: 0,
-                  right: 0,
-                  child: CustomDotsIndicator(
-                    imageNumper: widget.imgList.length,
-                    current: _current,
-                  ),
+              Positioned(
+                bottom: 12,
+                left: 0,
+                right: 0,
+                child: CustomDotsIndicator(
+                  imageNumper:
+                      widget.property.imagesUrl!.isEmpty
+                          ? 1
+                          : widget.property.imagesUrl!.length,
+                  current: _current,
                 ),
+              ),
             ],
           ),
 
@@ -87,11 +99,14 @@ class _PropertyCardState extends State<PropertyCard> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Title and Price
-                TitleCardProperty(),
+                TitleCardProperty(property: widget.property),
                 const SizedBox(height: 12),
 
                 // Location
-                LocationProprty(city: 'دمشق', county: 'الميدان'),
+                LocationProprty(
+                  city: widget.property.city,
+                  county: widget.property.county,
+                ),
                 const SizedBox(height: 16),
 
                 // Features
@@ -100,20 +115,24 @@ class _PropertyCardState extends State<PropertyCard> {
                   children: [
                     FeatureItemCard(
                       icon: Icons.door_front_door_outlined,
-                      text: '5 ${'property_details.rooms'.tr()}',
+                      text:
+                          '${widget.property.rooms} ${'property_details.rooms'.tr()}',
                     ),
 
                     FeatureItemCard(
                       icon: Icons.king_bed,
-                      text: '3 ${'property_details.bedrooms'.tr()}',
+                      text:
+                          '${widget.property.bedrooms} ${'property_details.bedrooms'.tr()}',
                     ),
                     FeatureItemCard(
                       icon: Icons.bathtub,
-                      text: '3 ${'property_details.bathrooms'.tr()}',
+                      text:
+                          '${widget.property.bathrooms} ${'property_details.bathrooms'.tr()}',
                     ),
                     FeatureItemCard(
                       icon: Icons.square_foot,
-                      text: '300 ${'property_details.area'.tr()}',
+                      text:
+                          '${widget.property.area} ${'property_details.area'.tr()}',
                     ),
                   ],
                 ),
@@ -123,7 +142,7 @@ class _PropertyCardState extends State<PropertyCard> {
                 const Divider(height: 24, thickness: 1),
 
                 // Footer
-                FooterCardProperty(),
+                FooterCardProperty(property: widget.property),
               ],
             ),
           ),

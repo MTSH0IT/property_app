@@ -14,8 +14,9 @@ class PropertyEntity {
   final int area;
   final double latitude;
   final double longitude;
-  final List<String> features;
-  final List<File> image;
+  final List<String>? features;
+  final List<File>? images;
+  final List<String>? imagesUrl;
 
   PropertyEntity({
     required this.title,
@@ -31,7 +32,8 @@ class PropertyEntity {
     required this.area,
     required this.latitude,
     required this.longitude,
-    required this.features,
-    required this.image,
+    this.features,
+    this.images,
+    this.imagesUrl,
   });
 }

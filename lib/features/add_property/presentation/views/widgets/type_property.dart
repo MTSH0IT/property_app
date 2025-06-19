@@ -10,7 +10,7 @@ class TypeProperty extends StatefulWidget {
 }
 
 class _TypePropertyState extends State<TypeProperty> {
-  String selectedType = "بيع";
+  String selectedType = "للبيع";
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,7 +24,7 @@ class _TypePropertyState extends State<TypeProperty> {
             child: GestureDetector(
               onTap: () {
                 setState(() {
-                  selectedType = 'بيع';
+                  selectedType = 'للبيع';
                   widget.onChanged(selectedType);
                 });
               },
@@ -32,7 +32,7 @@ class _TypePropertyState extends State<TypeProperty> {
                 padding: const EdgeInsets.symmetric(vertical: 12),
                 decoration: BoxDecoration(
                   color:
-                      selectedType == 'بيع'
+                      selectedType == 'للبيع'
                           ? Theme.of(context).primaryColor
                           : Colors.transparent,
                   borderRadius: BorderRadius.circular(12),
@@ -42,7 +42,7 @@ class _TypePropertyState extends State<TypeProperty> {
                     'add_property.type.sale'.tr(),
                     style: TextStyle(
                       color:
-                          selectedType == 'بيع' ? Colors.white : Colors.black,
+                          selectedType == 'للبيع' ? Colors.white : Colors.black,
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
                     ),

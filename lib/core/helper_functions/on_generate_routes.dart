@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:property_app/core/entites/property_entity.dart';
 import 'package:property_app/features/add_property/presentation/views/add_property_view.dart';
 import 'package:property_app/features/app_info/presentation/view/app_info_view.dart';
 import 'package:property_app/features/auth/presentation/views/login_view.dart';
@@ -25,7 +26,10 @@ Route<dynamic> onGenerateRoutes(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const MainView());
     case PropertyDetailsView.routeName:
       return MaterialPageRoute(
-        builder: (context) => const PropertyDetailsView(),
+        builder:
+            (context) => PropertyDetailsView(
+              property: settings.arguments as PropertyEntity,
+            ),
       );
     case ProfileView.routeName:
       return MaterialPageRoute(builder: (context) => const ProfileView());

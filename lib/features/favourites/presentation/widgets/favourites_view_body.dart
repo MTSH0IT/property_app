@@ -25,7 +25,7 @@ class _FavouritesViewBodyState extends State<FavouritesViewBody> {
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 8),
-            child: PropertyCard(imgList: imgList),
+            //child: PropertyCard(imgList: imgList),
           );
         },
       ),

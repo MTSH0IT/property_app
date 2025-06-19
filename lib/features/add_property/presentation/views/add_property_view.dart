@@ -29,8 +29,18 @@ class AddPropertyView extends StatelessWidget {
                   Colors.green,
                 );
               }
+              if (state is AddPropertyFailure) {
+                buildSnackBarMessage(
+                  context,
+                  "Failed to add property please try again",
+                  Colors.red,
+                );
+              }
             },
             builder: (context, state) {
+              if (state is AddPropertyLoading) {
+                return const Center(child: CircularProgressIndicator());
+              }
               return const AddPropertyViewBody();
             },
           ),

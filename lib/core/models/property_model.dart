@@ -1,6 +1,4 @@
-//import 'dart:io';
-
-import 'package:property_app/features/add_property/domain/entites/property_entity.dart';
+import 'package:property_app/core/entites/property_entity.dart';
 
 class PropertyModel {
   final String title;
@@ -17,7 +15,7 @@ class PropertyModel {
   final double latitude;
   final double longitude;
   final List<String> features;
-  //final List<File> image;
+  final List<String> imagesUrl;
 
   PropertyModel({
     required this.title,
@@ -34,7 +32,7 @@ class PropertyModel {
     required this.latitude,
     required this.longitude,
     required this.features,
-    //required this.image,
+    required this.imagesUrl,
   });
 
   factory PropertyModel.fromEntity(PropertyEntity entity) {
@@ -52,7 +50,28 @@ class PropertyModel {
       area: entity.area,
       latitude: entity.latitude,
       longitude: entity.longitude,
-      features: entity.features,
+      features: entity.features ?? [],
+      imagesUrl: entity.imagesUrl ?? [],
+    );
+  }
+
+  PropertyEntity toEntity(PropertyModel model) {
+    return PropertyEntity(
+      title: model.title,
+      type: model.type,
+      price: model.price,
+      city: model.city,
+      county: model.county,
+      description: model.description,
+      rooms: model.rooms,
+      bedrooms: model.bedrooms,
+      bathrooms: model.bathrooms,
+      floor: model.floor,
+      area: model.area,
+      latitude: model.latitude,
+      longitude: model.longitude,
+      features: model.features,
+      imagesUrl: model.imagesUrl,
     );
   }
 
@@ -72,6 +91,27 @@ class PropertyModel {
       'latitude': latitude,
       'longitude': longitude,
       'features': features,
+      'imagesUrl': imagesUrl,
     };
+  }
+
+  factory PropertyModel.fromJson(Map<String, dynamic> json) {
+    return PropertyModel(
+      title: json['title'],
+      type: json['type'],
+      price: json['price'],
+      city: json['city'],
+      county: json['county'],
+      description: json['description'],
+      rooms: json['rooms'],
+      bedrooms: json['bedrooms'],
+      bathrooms: json['bathrooms'],
+      floor: json['floor'],
+      area: json['area'],
+      latitude: json['latitude'],
+      longitude: json['longitude'],
+      features: List<String>.from(json['features']),
+      imagesUrl: List<String>.from(json['imagesUrl']),
+    );
   }
 }

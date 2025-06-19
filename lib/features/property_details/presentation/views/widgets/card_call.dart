@@ -22,11 +22,14 @@ class CardCall extends StatelessWidget {
             children: [
               Text(
                 'property_details.price'.tr(),
-                style: const TextStyle(fontWeight: FontWeight.bold),
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               Text(
                 '$price'
-                r"$",
+                r" $",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color:

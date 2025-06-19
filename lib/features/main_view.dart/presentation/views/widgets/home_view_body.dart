@@ -1,11 +1,13 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:property_app/core/entites/property_entity.dart';
 import 'package:property_app/features/main_view.dart/presentation/views/widgets/custom_app_bar.dart';
 import 'package:property_app/features/main_view.dart/presentation/views/widgets/image_property.dart';
 import 'package:property_app/features/main_view.dart/presentation/views/widgets/properaty_card.dart';
 
 class HomeViewBody extends StatefulWidget {
-  const HomeViewBody({super.key});
+  final List<PropertyEntity> properties;
+  const HomeViewBody({super.key, required this.properties});
 
   @override
   State<HomeViewBody> createState() => _HomeViewBodyState();
@@ -48,11 +50,11 @@ class _HomeViewBodyState extends State<HomeViewBody> {
         ),
 
         SliverList.builder(
-          itemCount: 10,
+          itemCount: widget.properties.length,
           itemBuilder: (context, index) {
             return Padding(
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-              child: PropertyCard(imgList: imgList),
+              child: PropertyCard(property: widget.properties[index]),
             );
           },
         ),

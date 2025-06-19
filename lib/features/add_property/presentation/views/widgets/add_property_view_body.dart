@@ -8,7 +8,7 @@ import 'package:property_app/core/services/position_service.dart';
 
 import 'package:property_app/core/widgets/custom_text_form_field.dart';
 import 'package:property_app/features/add_property/data/service/feature_managment.dart';
-import 'package:property_app/features/add_property/domain/entites/property_entity.dart';
+import 'package:property_app/core/entites/property_entity.dart';
 import 'package:property_app/features/add_property/presentation/cubit/add_property_cubit.dart';
 import 'package:property_app/features/add_property/presentation/views/widgets/custom_text_field.dart';
 import 'package:property_app/features/add_property/presentation/views/widgets/grid_view_features.dart';
@@ -29,7 +29,7 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
   final TextEditingController _controller = TextEditingController();
   List<String> listItems = [];
   List<File> listImages = [];
-  String selectedType = "بيع";
+  String selectedType = "للبيع";
   late String title;
   late int price;
   String? selectedCity;
@@ -293,7 +293,7 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
                         latitude: latitude!,
                         longitude: longitude!,
                         features: listItems,
-                        image: listImages,
+                        images: listImages,
                       );
                       context.read<AddPropertyCubit>().addProperty(property);
                     } else {

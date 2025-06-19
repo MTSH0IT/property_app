@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:property_app/core/entites/property_entity.dart';
 import 'package:property_app/core/utils/const.dart';
 
 class TitleCardProperty extends StatelessWidget {
-  const TitleCardProperty({super.key});
+  const TitleCardProperty({super.key, required this.property});
+
+  final PropertyEntity property;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const Text(
-          'فيلا فاخرة للبيع',
+        Text(
+          property.title,
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
         Container(
@@ -19,12 +22,12 @@ class TitleCardProperty extends StatelessWidget {
             color: kcolor.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(12),
           ),
-          child: const Text(
-            'للبيع',
+          child: Text(
+            property.type,
             style: TextStyle(
               color: kPrimaryColor,
               fontWeight: FontWeight.bold,
-              fontSize: 12,
+              fontSize: 14,
             ),
           ),
         ),
