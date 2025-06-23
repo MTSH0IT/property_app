@@ -17,6 +17,7 @@ class PropertyEntity {
   final List<String>? features;
   final List<File>? images;
   final List<String>? imagesUrl;
+  String? propertyId;
 
   PropertyEntity({
     required this.title,
@@ -35,5 +36,6 @@ class PropertyEntity {
     this.features,
     this.images,
     this.imagesUrl,
+    this.propertyId,
   });
 }

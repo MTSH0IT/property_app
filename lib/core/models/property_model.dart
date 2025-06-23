@@ -16,6 +16,7 @@ class PropertyModel {
   final double longitude;
   final List<String> features;
   final List<String> imagesUrl;
+  String? propertyId;
 
   PropertyModel({
     required this.title,
@@ -33,6 +34,7 @@ class PropertyModel {
     required this.longitude,
     required this.features,
     required this.imagesUrl,
+    this.propertyId,
   });
 
   factory PropertyModel.fromEntity(PropertyEntity entity) {
@@ -72,6 +74,7 @@ class PropertyModel {
       longitude: model.longitude,
       features: model.features,
       imagesUrl: model.imagesUrl,
+      propertyId: model.propertyId,
     );
   }
 
@@ -112,6 +115,7 @@ class PropertyModel {
       longitude: json['longitude'],
       features: List<String>.from(json['features']),
       imagesUrl: List<String>.from(json['imagesUrl']),
+      propertyId: json['id'],
     );
   }
 }

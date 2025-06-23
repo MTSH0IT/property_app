@@ -4,7 +4,7 @@ import 'package:property_app/features/add_property/presentation/views/add_proper
 import 'package:property_app/features/app_info/presentation/view/app_info_view.dart';
 import 'package:property_app/features/auth/presentation/views/login_view.dart';
 import 'package:property_app/features/auth/presentation/views/signup_view.dart';
-import 'package:property_app/features/favourites/presentation/view/favourites_view.dart';
+import 'package:property_app/features/favorite/presentation/view/favourites_view.dart';
 import 'package:property_app/features/filter_property/presentation/view/filter_property_view.dart';
 import 'package:property_app/features/main_view.dart/presentation/views/main_view.dart';
 import 'package:property_app/features/onboardind/presentation/view/onboarding_view.dart';
