@@ -33,7 +33,12 @@
     "min_rooms": "Enter minimum number of rooms",
     "min_bedrooms": "Enter minimum number of bedrooms",
     "min_bathrooms": "Enter minimum number of bathrooms",
-    "search": "Search"
+    "search": "Search",
+    "results": "Search Results",
+    "found": "Found",
+    "properties": "properties",
+    "no_results": "No results found",
+    "try_different_filters": "Try different filter criteria"
   },
   "onboarding": {
     "page1": {

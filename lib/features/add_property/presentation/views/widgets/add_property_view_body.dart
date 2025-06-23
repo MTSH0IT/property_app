@@ -24,9 +24,19 @@ class AddPropertyViewBody extends StatefulWidget {
 }
 
 class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+    _latitudeController.dispose();
+    _longitudeController.dispose();
+  }
+
   final _formKey = GlobalKey<FormState>();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   final TextEditingController _controller = TextEditingController();
+  final TextEditingController _latitudeController = TextEditingController();
+  final TextEditingController _longitudeController = TextEditingController();
   List<String> listItems = [];
   List<File> listImages = [];
   String selectedType = "للبيع";
@@ -147,27 +157,33 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
                   children: [
                     Expanded(
                       child: CustomTextFormField(
+                        controller: _latitudeController,
                         hintText:
                             latitude == null
                                 ? "add_property.latitude".tr()
                                 : latitude.toString(),
                         textInputType: TextInputType.number,
-                        //enabled: latitude == null,
                         onChanged: (p0) {
-                          latitude = double.parse(p0!);
+                          latitude = double.tryParse(p0 ?? '');
+                        },
+                        onSaved: (p0) {
+                          latitude = double.tryParse(p0 ?? '');
                         },
                       ),
                     ),
                     Expanded(
                       child: CustomTextFormField(
+                        controller: _longitudeController,
                         hintText:
                             longitude == null
                                 ? "add_property.longitude".tr()
                                 : longitude.toString(),
                         textInputType: TextInputType.number,
-                        //enabled: longitude == null,
                         onChanged: (p0) {
-                          longitude = double.parse(p0!);
+                          longitude = double.tryParse(p0 ?? '');
+                        },
+                        onSaved: (p0) {
+                          longitude = double.tryParse(p0 ?? '');
                         },
                       ),
                     ),
@@ -183,6 +199,8 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
                   setState(() {
                     latitude = location.latitude;
                     longitude = location.longitude;
+                    _latitudeController.text = latitude.toString();
+                    _longitudeController.text = longitude.toString();
                   });
                 },
                 child: Text("add_property.get_location".tr()),

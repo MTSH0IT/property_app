@@ -1,6 +1,12 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:property_app/core/entites/filter_entity.dart';
 import 'package:property_app/features/add_property/presentation/views/widgets/type_property.dart';
+import 'package:property_app/features/filter_property/presentation/cubit/filter_property_cubit.dart';
+import 'package:property_app/features/filter_property/presentation/view/filter_results_view.dart';
 import 'package:property_app/features/filter_property/presentation/view/widgets/city_dropdown_field.dart';
 import 'package:property_app/features/filter_property/presentation/view/widgets/number_input_field.dart';
 
@@ -22,229 +28,234 @@ class _FilterPropertyViewBodyState extends State<FilterPropertyViewBody> {
   int? minBathrooms;
   int? minArea;
   int? maxArea;
-  final TextEditingController minRoomsController = TextEditingController();
-  final TextEditingController minBedroomsController = TextEditingController();
-  final TextEditingController minBathroomsController = TextEditingController();
-  final TextEditingController minAreaController = TextEditingController();
-  final TextEditingController maxAreaController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'filter.title'.tr(),
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            const SizedBox(height: 24),
-
-            // نوع العقار
-            Text(
-              'filter.property_type'.tr(),
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            const SizedBox(height: 8),
-            TypeProperty(
-              onChanged: (value) {
-                setState(() {
-                  selectedType = value;
-                });
-              },
-            ),
-            const SizedBox(height: 24),
-
-            // نطاق السعر
-            Text(
-              'filter.price_range'.tr(),
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            const SizedBox(height: 8),
-            RangeSlider(
-              values: priceRange,
-              min: 0,
-              max: 1000000,
-              divisions: 100,
-              labels: RangeLabels(
-                '${priceRange.start.round()} \$',
-                '${priceRange.end.round()} \$',
+    return BlocListener<FilterPropertyCubit, FilterPropertyState>(
+      listener: (context, state) {
+        if (state is FilterPropertySuccess) {
+          Navigator.pushNamed(
+            context,
+            FilterResultsView.routeName,
+            arguments: state.properties,
+          );
+        } else if (state is FilterPropertyFailure) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(state.error), backgroundColor: Colors.red),
+          );
+        }
+      },
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'filter.title'.tr(),
+                style: Theme.of(context).textTheme.headlineMedium,
               ),
-              onChanged: (RangeValues values) {
-                setState(() {
-                  priceRange = values;
-                  minPrice = priceRange.start.round();
-                  maxPrice = priceRange.end.round();
-                });
-              },
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              const SizedBox(height: 24),
+
+              // نوع العقار
+              Text(
+                'filter.property_type'.tr(),
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const SizedBox(height: 8),
+              TypeProperty(
+                onChanged: (value) {
+                  setState(() {
+                    selectedType = value;
+                  });
+                },
+              ),
+              const SizedBox(height: 24),
+
+              // نطاق السعر
+              Text(
+                'filter.price_range'.tr(),
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const SizedBox(height: 8),
+              RangeSlider(
+                values: priceRange,
+                min: 0,
+                max: 1000000,
+                divisions: 100,
+                labels: RangeLabels(
+                  '${priceRange.start.round()} \$',
+                  '${priceRange.end.round()} \$',
+                ),
+                onChanged: (RangeValues values) {
+                  setState(() {
+                    priceRange = values;
+                    minPrice = priceRange.start.round();
+                    maxPrice = priceRange.end.round();
+                  });
+                },
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      '${priceRange.start.round()} \$',
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: Colors.grey,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    Text(
+                      '${priceRange.end.round()} \$',
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: Colors.grey,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 24),
+
+              // المدينة
+              Text(
+                'filter.city'.tr(),
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const SizedBox(height: 8),
+              CityDropdownField(
+                selectedCity: selectedCity,
+                onChanged: (String? newValue) {
+                  setState(() {
+                    selectedCity = newValue;
+                  });
+                },
+              ),
+              const SizedBox(height: 24),
+
+              // عدد الغرف
+              Text(
+                'filter.rooms'.tr(),
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const SizedBox(height: 8),
+              NumberInputField(
+                hintText: 'filter.min_rooms'.tr(),
+                onChanged: (value) {
+                  minRooms = int.tryParse(value);
+                },
+              ),
+              const SizedBox(height: 24),
+
+              // عدد غرف النوم
+              Text(
+                'filter.bedrooms'.tr(),
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const SizedBox(height: 8),
+              NumberInputField(
+                hintText: 'filter.min_bedrooms'.tr(),
+                onChanged: (value) {
+                  minBedrooms = int.tryParse(value);
+                },
+              ),
+              const SizedBox(height: 24),
+
+              // عدد الحمامات
+              Text(
+                'filter.bathrooms'.tr(),
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const SizedBox(height: 8),
+              NumberInputField(
+                hintText: 'filter.min_bathrooms'.tr(),
+                onChanged: (value) {
+                  minBathrooms = int.tryParse(value);
+                },
+              ),
+              const SizedBox(height: 24),
+
+              // المساحة
+              Text(
+                'filter.area'.tr(),
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const SizedBox(height: 8),
+              Row(
                 children: [
-                  Text(
-                    '${priceRange.start.round()} \$',
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: Colors.grey,
-                      fontWeight: FontWeight.w500,
+                  Expanded(
+                    child: NumberInputField(
+                      hintText: 'filter.min_area'.tr(),
+                      onChanged: (value) {
+                        minArea = int.tryParse(value);
+                      },
                     ),
                   ),
-                  Text(
-                    '${priceRange.end.round()} \$',
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: Colors.grey,
-                      fontWeight: FontWeight.w500,
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: NumberInputField(
+                      hintText: 'filter.max_area'.tr(),
+                      onChanged: (value) {
+                        maxArea = int.tryParse(value);
+                      },
                     ),
                   ),
                 ],
               ),
-            ),
-            const SizedBox(height: 24),
+              const SizedBox(height: 32),
 
-            // المدينة
-            Text(
-              'filter.city'.tr(),
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            const SizedBox(height: 8),
-            CityDropdownField(
-              selectedCity: selectedCity,
-              onChanged: (String? newValue) {
-                setState(() {
-                  selectedCity = newValue;
-                });
-              },
-            ),
-            const SizedBox(height: 24),
-
-            // عدد الغرف
-            Text(
-              'filter.rooms'.tr(),
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            const SizedBox(height: 8),
-            NumberInputField(
-              hintText: 'filter.min_rooms'.tr(),
-              onChanged: (value) {
-                setState(() {
-                  minRoomsController.text = value;
-                });
-              },
-            ),
-            const SizedBox(height: 24),
-
-            // عدد غرف النوم
-            Text(
-              'filter.bedrooms'.tr(),
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            const SizedBox(height: 8),
-            NumberInputField(
-              hintText: 'filter.min_bedrooms'.tr(),
-              onChanged: (value) {
-                setState(() {
-                  minBedroomsController.text = value;
-                });
-              },
-            ),
-            const SizedBox(height: 24),
-
-            // عدد الحمامات
-            Text(
-              'filter.bathrooms'.tr(),
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            const SizedBox(height: 8),
-            NumberInputField(
-              hintText: 'filter.min_bathrooms'.tr(),
-              onChanged: (value) {
-                setState(() {
-                  minBathroomsController.text = value;
-                });
-              },
-            ),
-            const SizedBox(height: 24),
-
-            // المساحة
-            Text(
-              'filter.area'.tr(),
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            const SizedBox(height: 8),
-            Row(
-              children: [
-                Expanded(
-                  child: NumberInputField(
-                    hintText: 'filter.min_area'.tr(),
-                    onChanged: (value) {
-                      setState(() {
-                        minAreaController.text = value;
-                      });
-                    },
-                  ),
-                ),
-                const SizedBox(width: 16),
-                Expanded(
-                  child: NumberInputField(
-                    hintText: 'filter.max_area'.tr(),
-                    onChanged: (value) {
-                      setState(() {
-                        maxAreaController.text = value;
-                      });
-                    },
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 32),
-
-            // زر البحث
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(context, {
-                    'city': selectedCity,
-                    'minBathrooms': minBathrooms,
-                    'minArea': minArea,
-                    'maxArea': maxArea,
-                    'minRooms': minRooms,
-                    'minBedrooms': minBedrooms,
-                    'minPrice': minPrice,
-                    'maxPrice': maxPrice,
-                    'type': selectedType,
-                  });
+              // زر البحث
+              BlocBuilder<FilterPropertyCubit, FilterPropertyState>(
+                builder: (context, state) {
+                  return SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed:
+                          state is FilterPropertyLoading
+                              ? null
+                              : () {
+                                final filter = FilterEntity(
+                                  type: selectedType,
+                                  minPrice: minPrice,
+                                  maxPrice: maxPrice,
+                                  city: selectedCity,
+                                  minRooms: minRooms,
+                                  minBedrooms: minBedrooms,
+                                  minBathrooms: minBathrooms,
+                                  minArea: minArea,
+                                  maxArea: maxArea,
+                                );
+                                log(filter.toString());
+                                context
+                                    .read<FilterPropertyCubit>()
+                                    .filterProperties(filter);
+                              },
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      child:
+                          state is FilterPropertyLoading
+                              ? const CircularProgressIndicator(
+                                color: Colors.white,
+                              )
+                              : Text(
+                                'filter.search'.tr(),
+                                style: Theme.of(context).textTheme.titleLarge
+                                    ?.copyWith(fontWeight: FontWeight.bold),
+                              ),
+                    ),
+                  );
                 },
-                style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                ),
-                child: Text(
-                  'filter.search'.tr(),
-                  style: Theme.of(
-                    context,
-                  ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
-                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    minRoomsController.dispose();
-    minBedroomsController.dispose();
-    minBathroomsController.dispose();
-    minAreaController.dispose();
-    maxAreaController.dispose();
-    super.dispose();
   }
 }

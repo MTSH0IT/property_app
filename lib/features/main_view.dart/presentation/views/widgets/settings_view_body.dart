@@ -4,7 +4,7 @@ import 'package:property_app/core/services/firebase_auth_services.dart';
 import 'package:property_app/core/widgets/card_item.dart';
 import 'package:property_app/features/add_property/presentation/views/add_property_view.dart';
 import 'package:property_app/features/app_info/presentation/view/app_info_view.dart';
-import 'package:property_app/features/favourites/presentation/view/favourites_view.dart';
+import 'package:property_app/features/favorite/presentation/view/favourites_view.dart';
 import 'package:property_app/features/profile/presentation/views/profile_view.dart';
 import 'package:property_app/features/splash/presentation/views/splash_view.dart';
 import 'package:provider/provider.dart';

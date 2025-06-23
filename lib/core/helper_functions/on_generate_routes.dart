@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:property_app/core/entites/property_entity.dart';
 import 'package:property_app/features/add_property/presentation/views/add_property_view.dart';
@@ -6,6 +7,7 @@ import 'package:property_app/features/auth/presentation/views/login_view.dart';
 import 'package:property_app/features/auth/presentation/views/signup_view.dart';
 import 'package:property_app/features/favorite/presentation/view/favourites_view.dart';
 import 'package:property_app/features/filter_property/presentation/view/filter_property_view.dart';
+import 'package:property_app/features/filter_property/presentation/view/filter_results_view.dart';
 import 'package:property_app/features/main_view.dart/presentation/views/main_view.dart';
 import 'package:property_app/features/onboardind/presentation/view/onboarding_view.dart';
 import 'package:property_app/features/profile/presentation/views/profile_view.dart';
@@ -42,6 +44,13 @@ Route<dynamic> onGenerateRoutes(RouteSettings settings) {
     case FilterPropertyView.routeName:
       return MaterialPageRoute(
         builder: (context) => const FilterPropertyView(),
+      );
+    case FilterResultsView.routeName:
+      return MaterialPageRoute(
+        builder:
+            (context) => FilterResultsView(
+              properties: settings.arguments as List<PropertyEntity>,
+            ),
       );
     default:
       return MaterialPageRoute(

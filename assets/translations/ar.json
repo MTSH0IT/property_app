@@ -33,7 +33,12 @@
     "min_rooms": "أدخل الحد الأدنى لعدد الغرف",
     "min_bedrooms": "أدخل الحد الأدنى لعدد غرف النوم",
     "min_bathrooms": "أدخل الحد الأدنى لعدد الحمامات",
-    "search": "بحث"
+    "search": "بحث",
+    "results": "نتائج البحث",
+    "found": "تم العثور على",
+    "properties": "عقار",
+    "no_results": "لا توجد نتائج",
+    "try_different_filters": "جرب معايير فلترة مختلفة"
   },
   "onboarding": {
     "page1": {
