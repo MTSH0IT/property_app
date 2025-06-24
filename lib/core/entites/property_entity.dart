@@ -17,7 +17,8 @@ class PropertyEntity {
   final List<String>? features;
   final List<File>? images;
   final List<String>? imagesUrl;
-  String? propertyId;
+  final String? propertyId;
+  final DateTime? createdAt;
 
   PropertyEntity({
     required this.title,
@@ -37,5 +38,35 @@ class PropertyEntity {
     this.images,
     this.imagesUrl,
     this.propertyId,
+    this.createdAt,
   });
+
+  factory PropertyEntity.skeleton() {
+    return PropertyEntity(
+      title: '',
+      type: '',
+      price: 0,
+      city: '',
+      county: '',
+      description: '',
+      rooms: 0,
+      bedrooms: 0,
+      bathrooms: 0,
+      floor: 0,
+      area: 0,
+      latitude: 0.0,
+      longitude: 0.0,
+      features: const [],
+      images: const [],
+      imagesUrl: const [],
+      propertyId: '',
+      createdAt: null,
+    );
+  }
+  static List<PropertyEntity> proprtySkeleton = [
+    PropertyEntity.skeleton(),
+    PropertyEntity.skeleton(),
+    PropertyEntity.skeleton(),
+    PropertyEntity.skeleton(),
+  ];
 }

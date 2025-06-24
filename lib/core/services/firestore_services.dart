@@ -116,6 +116,9 @@ class FirestoreServices implements DatabaseService {
         query = query.where('area', isLessThanOrEqualTo: filter.maxArea);
       }
 
+      // إضافة الترتيب حسب التاريخ (الأحدث أولاً)
+      query = query.orderBy('createdAt', descending: true);
+
       var result = await query.get();
       return result.docs.map((e) => e.data()).toList();
     } catch (e) {

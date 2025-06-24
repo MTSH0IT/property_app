@@ -5,6 +5,7 @@ import 'package:property_app/core/entites/property_entity.dart';
 import 'package:property_app/core/utils/images.dart';
 import 'package:property_app/features/main_view.dart/presentation/views/widgets/Custom_image_cunter.dart';
 import 'package:property_app/features/main_view.dart/presentation/views/widgets/custom_dots_indicator.dart';
+import 'package:property_app/features/main_view.dart/presentation/views/widgets/date_badge_widget.dart';
 import 'package:property_app/features/main_view.dart/presentation/views/widgets/feature_item_crad.dart';
 import 'package:property_app/features/main_view.dart/presentation/views/widgets/foother_card_property.dart';
 import 'package:property_app/features/main_view.dart/presentation/views/widgets/image_property.dart';
@@ -103,10 +104,17 @@ class _PropertyCardState extends State<PropertyCard> {
                 const SizedBox(height: 12),
 
                 // Location
-                LocationProprty(
-                  city: widget.property.city,
-                  county: widget.property.county,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    LocationProprty(
+                      city: widget.property.city,
+                      county: widget.property.county,
+                    ),
+                    DateBadgeWidget(publishedDate: widget.property.createdAt),
+                  ],
                 ),
+
                 const SizedBox(height: 16),
 
                 // Features

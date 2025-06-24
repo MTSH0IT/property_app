@@ -27,7 +27,13 @@ class PropertyRepoImp extends PropertyRepo {
   @override
   Future<List<PropertyEntity>> getProperties() async {
     try {
-      final properties = await firestore.getData(path: 'property');
+      final properties = await firestore.getData(
+        path: 'property',
+        query: {
+          'orderby': 'createdAt',
+          'descending': true, // الأحدث أولاً
+        },
+      );
 
       List<PropertyModel> propertyModels =
           (properties as List).map((e) => PropertyModel.fromJson(e)).toList();

@@ -1,9 +1,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:property_app/core/entites/property_entity.dart';
 import 'package:property_app/features/main_view.dart/presentation/views/widgets/custom_app_bar.dart';
 import 'package:property_app/features/main_view.dart/presentation/views/widgets/image_property.dart';
 import 'package:property_app/features/main_view.dart/presentation/views/widgets/properaty_card.dart';
+import 'dart:async';
+import 'package:property_app/features/main_view.dart/presentation/cubit/get_property_cubit.dart';
 
 class HomeViewBody extends StatefulWidget {
   final List<PropertyEntity> properties;
@@ -25,40 +28,50 @@ class _HomeViewBodyState extends State<HomeViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: [
-        CustomAppBar(),
+    return RefreshIndicator(
+      onRefresh: _onRefresh,
 
-        SliverToBoxAdapter(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(25),
-              child: CarouselSlider.builder(
-                itemCount: 5,
-                itemBuilder: (context, index, realIndex) {
-                  return ImagesProperty(image: imgList[index]);
-                },
-                options: CarouselOptions(
-                  aspectRatio: 4 / 2,
-                  autoPlay: true,
-                  enlargeCenterPage: true,
+      child: CustomScrollView(
+        slivers: [
+          CustomAppBar(),
+
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(25),
+                child: CarouselSlider.builder(
+                  itemCount: 5,
+                  itemBuilder: (context, index, realIndex) {
+                    return ImagesProperty(image: imgList[index]);
+                  },
+                  options: CarouselOptions(
+                    aspectRatio: 4 / 2,
+                    autoPlay: true,
+                    enlargeCenterPage: true,
+                  ),
                 ),
               ),
             ),
           ),
-        ),
 
-        SliverList.builder(
-          itemCount: widget.properties.length,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-              child: PropertyCard(property: widget.properties[index]),
-            );
-          },
-        ),
-      ],
+          SliverList.builder(
+            itemCount: widget.properties.length,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                child: PropertyCard(property: widget.properties[index]),
+              );
+            },
+          ),
+        ],
+      ),
     );
+  }
+
+  Future<void> _onRefresh() async {
+    final cubit = context.read<GetPropertyCubit>();
+    await Future.delayed(Duration(milliseconds: 500));
+    cubit.getProperties();
   }
 }

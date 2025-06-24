@@ -17,6 +17,7 @@ class PropertyModel {
   final List<String> features;
   final List<String> imagesUrl;
   String? propertyId;
+  final DateTime createdAt;
 
   PropertyModel({
     required this.title,
@@ -35,7 +36,8 @@ class PropertyModel {
     required this.features,
     required this.imagesUrl,
     this.propertyId,
-  });
+    DateTime? createdAt,
+  }) : createdAt = createdAt ?? DateTime.now();
 
   factory PropertyModel.fromEntity(PropertyEntity entity) {
     return PropertyModel(
@@ -54,6 +56,7 @@ class PropertyModel {
       longitude: entity.longitude,
       features: entity.features ?? [],
       imagesUrl: entity.imagesUrl ?? [],
+      createdAt: entity.createdAt,
     );
   }
 
@@ -75,6 +78,7 @@ class PropertyModel {
       features: model.features,
       imagesUrl: model.imagesUrl,
       propertyId: model.propertyId,
+      createdAt: model.createdAt,
     );
   }
 
@@ -95,6 +99,7 @@ class PropertyModel {
       'longitude': longitude,
       'features': features,
       'imagesUrl': imagesUrl,
+      'createdAt': createdAt.toIso8601String(),
     };
   }
 
@@ -116,6 +121,7 @@ class PropertyModel {
       features: List<String>.from(json['features']),
       imagesUrl: List<String>.from(json['imagesUrl']),
       propertyId: json['id'],
+      createdAt: DateTime.parse(json['createdAt']),
     );
   }
 }

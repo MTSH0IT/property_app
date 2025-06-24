@@ -5,6 +5,7 @@ import 'package:property_app/core/entites/property_entity.dart';
 import 'package:property_app/core/helper_functions/get_user_data.dart';
 import 'package:property_app/core/utils/images.dart';
 import 'package:property_app/features/main_view.dart/presentation/views/widgets/custom_dots_indicator.dart';
+import 'package:property_app/features/main_view.dart/presentation/views/widgets/date_badge_widget.dart';
 import 'package:property_app/features/main_view.dart/presentation/views/widgets/image_property.dart';
 import 'package:property_app/features/main_view.dart/presentation/views/widgets/location_proprty.dart';
 import 'package:property_app/features/property_details/presentation/cubit/favorite_cubit.dart';
@@ -138,6 +139,8 @@ class _PropertyDetailsViewBodyState extends State<PropertyDetailsViewBody> {
                   city: widget.property.city,
                   county: widget.property.county,
                 ),
+                const SizedBox(height: 8),
+                DateBadgeWidget(publishedDate: widget.property.createdAt),
                 const SizedBox(height: 16),
                 DitailsProperty(
                   rooms: widget.property.rooms,
