@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:property_app/core/helper_functions/show_exit_dialog.dart';
 import 'package:property_app/core/utils/const.dart';
@@ -29,7 +30,7 @@ class _MainViewState extends State<MainView> {
             final shouldExit = await showExitDialog(context);
             if (shouldExit == true) {
               // إغلاق التطبيق
-              Navigator.of(context).pop();
+              SystemNavigator.pop();
             }
           }
         },
