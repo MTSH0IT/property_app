@@ -14,11 +14,11 @@ class PropertyEntity {
   final int area;
   final double latitude;
   final double longitude;
-  final List<String>? features;
-  final List<File>? images;
-  final List<String>? imagesUrl;
-  final String? propertyId;
-  final DateTime? createdAt;
+  List<String>? features;
+  List<File>? images;
+  List<String>? imagesUrl;
+  String? propertyId;
+  DateTime? createdAt;
 
   PropertyEntity({
     required this.title,

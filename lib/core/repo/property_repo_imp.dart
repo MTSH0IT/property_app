@@ -7,10 +7,12 @@ import 'package:property_app/core/models/property_model.dart';
 import 'package:property_app/core/models/filter_model.dart';
 import 'package:property_app/core/repo/property_repo.dart';
 import 'package:property_app/core/services/firestore_services.dart';
+import 'package:property_app/core/services/supabese_storge.dart';
 import 'package:property_app/core/utils/custom_exception.dart';
 
 class PropertyRepoImp extends PropertyRepo {
   FirestoreServices firestore = FirestoreServices();
+  SupabaseStorageService supabase = SupabaseStorageService();
   @override
   Future<void> addProperty(PropertyEntity property) async {
     try {

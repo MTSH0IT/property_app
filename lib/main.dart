@@ -8,16 +8,16 @@ import 'package:provider/provider.dart';
 import 'package:property_app/core/theme/theme_provider.dart';
 import 'package:property_app/features/splash/presentation/views/splash_view.dart';
 import 'package:firebase_core/firebase_core.dart';
-//import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await Supabase.initialize(
-  //   url: 'https://tziuvhulovlnohdfmboh.supabase.co',
-  //   anonKey:
-  //       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR6aXV2aHVsb3Zsbm9oZGZtYm9oIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc0NzU3MTcyNSwiZXhwIjoyMDYzMTQ3NzI1fQ.O7sFrIXOw5qqHv9Os9qtZUsMqkauT5_zvruSt3XNiCg',
-  // );
+  await Supabase.initialize(
+    url: 'https://tziuvhulovlnohdfmboh.supabase.co',
+    anonKey:
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR6aXV2aHVsb3Zsbm9oZGZtYm9oIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc0NzU3MTcyNSwiZXhwIjoyMDYzMTQ3NzI1fQ.O7sFrIXOw5qqHv9Os9qtZUsMqkauT5_zvruSt3XNiCg',
+  );
   await EasyLocalization.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await Prefs.init();
