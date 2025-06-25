@@ -1,10 +1,7 @@
 import 'dart:developer';
-
 import 'package:property_app/core/entites/property_entity.dart';
 import 'package:property_app/core/entites/filter_entity.dart';
-
 import 'package:property_app/core/models/property_model.dart';
-import 'package:property_app/core/models/filter_model.dart';
 import 'package:property_app/core/repo/property_repo.dart';
 import 'package:property_app/core/services/firestore_services.dart';
 import 'package:property_app/core/services/supabese_storge.dart';
@@ -54,7 +51,7 @@ class PropertyRepoImp extends PropertyRepo {
     try {
       final properties = await firestore.getFilteredData(
         path: 'property',
-        filter: FilterModel.fromEntity(filter),
+        filter: filter,
       );
 
       List<PropertyModel> propertyModels =

@@ -5,7 +5,6 @@ class FilterEntity {
   final String? city;
   final int? minRooms;
   final int? minBedrooms;
-  final int? minBathrooms;
   final int? minArea;
   final int? maxArea;
 
@@ -16,7 +15,6 @@ class FilterEntity {
     this.city,
     this.minRooms,
     this.minBedrooms,
-    this.minBathrooms,
     this.minArea,
     this.maxArea,
   });
@@ -24,6 +22,6 @@ class FilterEntity {
   @override
   String toString() {
     return 'FilterEntity(type: '
-        '	$type, minPrice: $minPrice, maxPrice: $maxPrice, city: $city, minRooms: $minRooms, minBedrooms: $minBedrooms, minBathrooms: $minBathrooms, minArea: $minArea, maxArea: $maxArea)';
+        '	$type, minPrice: $minPrice, maxPrice: $maxPrice, city: $city, minRooms: $minRooms, minBedrooms: $minBedrooms, minArea: $minArea, maxArea: $maxArea)';
   }
 }

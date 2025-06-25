@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:property_app/core/entites/filter_entity.dart';
+import 'package:property_app/core/helper_functions/build_snack_bar_message.dart';
 import 'package:property_app/features/add_property/presentation/views/widgets/type_property.dart';
 import 'package:property_app/features/filter_property/presentation/cubit/filter_property_cubit.dart';
 import 'package:property_app/features/filter_property/presentation/view/filter_results_view.dart';
@@ -20,13 +21,13 @@ class FilterPropertyViewBody extends StatefulWidget {
 class _FilterPropertyViewBodyState extends State<FilterPropertyViewBody> {
   String selectedType = 'للبيع';
   RangeValues priceRange = const RangeValues(0, 1000000);
-  int? minPrice;
-  int? maxPrice;
+  int minPrice = 0;
+  int maxPrice = 1000000;
   String? selectedCity;
-  int? minRooms;
-  int? minBedrooms;
-  int? minBathrooms;
-  int? minArea;
+  int minRooms = 0;
+  int minBedrooms = 0;
+  int minBathrooms = 0;
+  int minArea = 0;
   int? maxArea;
 
   @override
@@ -144,7 +145,7 @@ class _FilterPropertyViewBodyState extends State<FilterPropertyViewBody> {
               NumberInputField(
                 hintText: 'filter.min_rooms'.tr(),
                 onChanged: (value) {
-                  minRooms = int.tryParse(value);
+                  minRooms = int.tryParse(value) ?? 0;
                 },
               ),
               const SizedBox(height: 24),
@@ -158,21 +159,7 @@ class _FilterPropertyViewBodyState extends State<FilterPropertyViewBody> {
               NumberInputField(
                 hintText: 'filter.min_bedrooms'.tr(),
                 onChanged: (value) {
-                  minBedrooms = int.tryParse(value);
-                },
-              ),
-              const SizedBox(height: 24),
-
-              // عدد الحمامات
-              Text(
-                'filter.bathrooms'.tr(),
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
-              const SizedBox(height: 8),
-              NumberInputField(
-                hintText: 'filter.min_bathrooms'.tr(),
-                onChanged: (value) {
-                  minBathrooms = int.tryParse(value);
+                  minBedrooms = int.tryParse(value) ?? 0;
                 },
               ),
               const SizedBox(height: 24),
@@ -189,7 +176,7 @@ class _FilterPropertyViewBodyState extends State<FilterPropertyViewBody> {
                     child: NumberInputField(
                       hintText: 'filter.min_area'.tr(),
                       onChanged: (value) {
-                        minArea = int.tryParse(value);
+                        minArea = int.tryParse(value) ?? 0;
                       },
                     ),
                   ),
@@ -216,6 +203,14 @@ class _FilterPropertyViewBodyState extends State<FilterPropertyViewBody> {
                           state is FilterPropertyLoading
                               ? null
                               : () {
+                                if (selectedCity == null) {
+                                  buildSnackBarMessage(
+                                    context,
+                                    "اختر المدينة",
+                                    Colors.orange,
+                                  );
+                                  return;
+                                }
                                 final filter = FilterEntity(
                                   type: selectedType,
                                   minPrice: minPrice,
@@ -223,7 +218,6 @@ class _FilterPropertyViewBodyState extends State<FilterPropertyViewBody> {
                                   city: selectedCity,
                                   minRooms: minRooms,
                                   minBedrooms: minBedrooms,
-                                  minBathrooms: minBathrooms,
                                   minArea: minArea,
                                   maxArea: maxArea,
                                 );

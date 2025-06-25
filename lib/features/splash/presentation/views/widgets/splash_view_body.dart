@@ -16,7 +16,10 @@ class SplashViewBody extends StatefulWidget {
 class _SplashViewBodyState extends State<SplashViewBody> {
   @override
   void initState() {
-    Future.delayed(const Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 1), () {
+      if (!mounted) {
+        return;
+      }
       if (FirebaseAuthServices().isLoggedIn()) {
         Navigator.pushReplacementNamed(context, MainView.routeName);
       } else if (Prefs.getBool("isOnboarded")) {

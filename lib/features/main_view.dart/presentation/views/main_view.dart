@@ -57,7 +57,14 @@ class _MainViewState extends State<MainView> {
               return Center(child: Text(state.error));
             }
             if (state is GetPropertySuccess) {
-              return screens[currentIndex];
+              return IndexedStack(
+                index: currentIndex,
+                children: [
+                  HomeView(properties: state.properties),
+                  MapView(properties: state.properties),
+                  const SettingsView(),
+                ],
+              );
             }
             return const SizedBox.shrink();
           },
@@ -66,5 +73,3 @@ class _MainViewState extends State<MainView> {
     );
   }
 }
-
-List<Widget> screens = [HomeView(), MapView(), SettingsView()];

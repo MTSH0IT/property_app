@@ -1,9 +1,9 @@
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:property_app/core/entites/filter_entity.dart';
 import 'package:property_app/core/services/database_service.dart';
 import 'package:property_app/core/utils/custom_exception.dart';
-import 'package:property_app/core/models/filter_model.dart';
 
 class FirestoreServices implements DatabaseService {
   static final firestore = FirebaseFirestore.instance;
@@ -68,55 +68,33 @@ class FirestoreServices implements DatabaseService {
 
   Future<dynamic> getFilteredData({
     required String path,
-    required FilterModel filter,
+    required FilterEntity filter,
   }) async {
     try {
       Query<Map<String, dynamic>> query = firestore.collection(path);
 
       // تطبيق الفلاتر
-      if (filter.type != null && filter.type!.isNotEmpty) {
-        query = query.where('type', isEqualTo: filter.type);
-      }
 
-      if (filter.city != null && filter.city!.isNotEmpty) {
-        query = query.where('city', isEqualTo: filter.city);
-      }
+      query = query.where('type', isEqualTo: filter.type);
 
-      if (filter.minPrice != null) {
-        query = query.where('price', isGreaterThanOrEqualTo: filter.minPrice);
-      }
+      query = query.where('city', isEqualTo: filter.city);
 
-      if (filter.maxPrice != null) {
-        query = query.where('price', isLessThanOrEqualTo: filter.maxPrice);
-      }
+      query = query.where('price', isGreaterThanOrEqualTo: filter.minPrice);
 
-      if (filter.minRooms != null) {
-        query = query.where('rooms', isGreaterThanOrEqualTo: filter.minRooms);
-      }
+      query = query.where('price', isLessThanOrEqualTo: filter.maxPrice);
 
-      if (filter.minBedrooms != null) {
-        query = query.where(
-          'bedrooms',
-          isGreaterThanOrEqualTo: filter.minBedrooms,
-        );
-      }
+      query = query.where('rooms', isGreaterThanOrEqualTo: filter.minRooms);
 
-      if (filter.minBathrooms != null) {
-        query = query.where(
-          'bathrooms',
-          isGreaterThanOrEqualTo: filter.minBathrooms,
-        );
-      }
+      query = query.where(
+        'bedrooms',
+        isGreaterThanOrEqualTo: filter.minBedrooms,
+      );
 
-      if (filter.minArea != null) {
-        query = query.where('area', isGreaterThanOrEqualTo: filter.minArea);
-      }
+      query = query.where('area', isGreaterThanOrEqualTo: filter.minArea);
 
       if (filter.maxArea != null) {
         query = query.where('area', isLessThanOrEqualTo: filter.maxArea);
       }
-
-      // إضافة الترتيب حسب التاريخ (الأحدث أولاً)
       query = query.orderBy('createdAt', descending: true);
 
       var result = await query.get();
