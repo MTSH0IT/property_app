@@ -27,7 +27,7 @@ class PropertyDetailsViewBody extends StatefulWidget {
 }
 
 class _PropertyDetailsViewBodyState extends State<PropertyDetailsViewBody> {
-  final PageController _pageController = PageController();
+  //final PageController _pageController = PageController();
   int _currentPage = 0;
 
   @override
@@ -44,7 +44,7 @@ class _PropertyDetailsViewBodyState extends State<PropertyDetailsViewBody> {
 
   @override
   void dispose() {
-    _pageController.dispose();
+    // _pageController.dispose();
     super.dispose();
   }
 
@@ -52,138 +52,152 @@ class _PropertyDetailsViewBodyState extends State<PropertyDetailsViewBody> {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        SliverAppBar(
-          expandedHeight: 300,
-          pinned: true,
-          flexibleSpace: FlexibleSpaceBar(
-            centerTitle: true,
-            background: Stack(
-              fit: StackFit.expand,
+        imageAppBar(context),
+        ViewDetailseProperty(property: widget.property),
+      ],
+    );
+  }
+
+  SliverAppBar imageAppBar(BuildContext context) {
+    return SliverAppBar(
+      expandedHeight: 300,
+      pinned: true,
+      flexibleSpace: FlexibleSpaceBar(
+        centerTitle: true,
+        background: Stack(
+          fit: StackFit.expand,
+          children: [
+            Stack(
               children: [
-                Stack(
-                  children: [
-                    PageView.builder(
-                      controller: _pageController,
-                      itemCount:
-                          widget.property.imagesUrl!.isEmpty
-                              ? 1
-                              : widget.property.imagesUrl!.length,
-                      onPageChanged: (index) {
-                        setState(() {
-                          _currentPage = index;
-                        });
-                      },
-                      itemBuilder: (context, index) {
-                        if (widget.property.imagesUrl!.isNotEmpty) {
-                          return ImagesProperty(
-                            image: widget.property.imagesUrl![index],
-                          );
-                        }
-                        return SvgPicture.asset(
-                          Assets.assetsImagesForSaleRafiki,
-                        );
-                      },
-                    ),
-                    Positioned(
-                      bottom: 16,
-                      left: 0,
-                      right: 0,
-                      child: CustomDotsIndicator(
-                        imageNumper:
-                            widget.property.imagesUrl!.isEmpty
-                                ? 1
-                                : widget.property.imagesUrl!.length,
-                        current: _currentPage,
-                      ),
-                    ),
-                  ],
+                PageView.builder(
+                  //controller: _pageController,
+                  itemCount:
+                      widget.property.imagesUrl!.isEmpty
+                          ? 1
+                          : widget.property.imagesUrl!.length,
+                  onPageChanged: (index) {
+                    setState(() {
+                      _currentPage = index;
+                    });
+                  },
+                  itemBuilder: (context, index) {
+                    if (widget.property.imagesUrl!.isNotEmpty) {
+                      return ImagesProperty(
+                        image: widget.property.imagesUrl![index],
+                      );
+                    }
+                    return SvgPicture.asset(Assets.assetsImagesForSaleRafiki);
+                  },
+                ),
+                Positioned(
+                  bottom: 16,
+                  left: 0,
+                  right: 0,
+                  child: CustomDotsIndicator(
+                    imageNumper:
+                        widget.property.imagesUrl!.isEmpty
+                            ? 1
+                            : widget.property.imagesUrl!.length,
+                    current: _currentPage,
+                  ),
                 ),
               ],
-            ),
-          ),
-          leading: CustomIconButton(
-            icon: Icons.arrow_back_ios_new,
-            onPressed: () => Navigator.pop(context),
-          ),
-          actions: [
-            BlocBuilder<FavoriteCubit, FavoriteState>(
-              builder: (context, state) {
-                return CustomIconButton(
-                  icon:
-                      state is FavoriteSuccess && state.isFavorite
-                          ? Icons.favorite
-                          : Icons.favorite_border,
-                  onPressed: () {
-                    BlocProvider.of<FavoriteCubit>(context).addOrRemoveFavorite(
-                      propertyId: widget.property.propertyId!,
-                      userId: getUserData().uId,
-                    );
-                  },
-                );
-              },
             ),
           ],
         ),
-        SliverToBoxAdapter(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                TitleDetailsProperty(
-                  title: widget.property.title,
-                  type: widget.property.type,
+      ),
+      leading: CustomIconButton(
+        icon: Icons.arrow_back_ios_new,
+        onPressed: () => Navigator.pop(context),
+      ),
+      actions: [
+        BlocBuilder<FavoriteCubit, FavoriteState>(
+          builder: (context, state) {
+            if (state is FavoriteLoading) {
+              return const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                child: SizedBox(
+                  width: 24,
+                  height: 24,
+                  child: CircularProgressIndicator(strokeWidth: 2),
                 ),
-                const SizedBox(height: 8),
-                LocationProprty(
-                  city: widget.property.city,
-                  county: widget.property.county,
-                ),
-                const SizedBox(height: 8),
-                DateBadgeWidget(publishedDate: widget.property.createdAt),
-                const SizedBox(height: 16),
-                DitailsProperty(
-                  rooms: widget.property.rooms,
-                  bedrooms: widget.property.bedrooms,
-                  bathrooms: widget.property.bathrooms,
-                  floor: widget.property.floor,
-                  area: widget.property.area,
-                ),
-                const SizedBox(height: 24),
-                Text(
-                  'property_details.description'.tr(),
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  widget.property.title,
-                  style: TextStyle(fontWeight: FontWeight.w500),
-                  textAlign: TextAlign.right,
-                ),
-                const SizedBox(height: 24),
-                Text(
-                  'property_details.features'.tr(),
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 12),
-                Wrap(
-                  spacing: 8,
-                  runSpacing: 8,
-                  children: [
-                    for (var feature in widget.property.features!)
-                      AdditionalFeatures(feature: feature),
-                  ],
-                ),
-                const SizedBox(height: 32),
-                CardCall(
-                  phone: "0947503627",
-                  price: widget.property.price.toString(),
-                ),
-              ],
-            ),
-          ),
+              );
+            }
+            return CustomIconButton(
+              icon:
+                  state is FavoriteSuccess && state.isFavorite
+                      ? Icons.favorite
+                      : Icons.favorite_border,
+              onPressed: () {
+                BlocProvider.of<FavoriteCubit>(context).addOrRemoveFavorite(
+                  propertyId: widget.property.propertyId!,
+                  userId: getUserData().uId,
+                );
+              },
+            );
+          },
         ),
       ],
+    );
+  }
+}
+
+class ViewDetailseProperty extends StatelessWidget {
+  const ViewDetailseProperty({super.key, required this.property});
+
+  final PropertyEntity property;
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverToBoxAdapter(
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            TitleDetailsProperty(title: property.title, type: property.type),
+            const SizedBox(height: 8),
+            LocationProprty(city: property.city, county: property.county),
+            const SizedBox(height: 8),
+            DateBadgeWidget(publishedDate: property.createdAt),
+            const SizedBox(height: 16),
+            DitailsProperty(
+              rooms: property.rooms,
+              bedrooms: property.bedrooms,
+              bathrooms: property.bathrooms,
+              floor: property.floor,
+              area: property.area,
+            ),
+            const SizedBox(height: 24),
+            Text(
+              'property_details.description'.tr(),
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              property.title,
+              style: TextStyle(fontWeight: FontWeight.w500),
+              textAlign: TextAlign.right,
+            ),
+            const SizedBox(height: 24),
+            Text(
+              'property_details.features'.tr(),
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 12),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: [
+                for (var feature in property.features!)
+                  AdditionalFeatures(feature: feature),
+              ],
+            ),
+            const SizedBox(height: 32),
+            CardCall(phone: "0947503627", price: property.price.toString()),
+          ],
+        ),
+      ),
     );
   }
 }
